@@ -1,7 +1,10 @@
 # goland-learning
 
-菜鸟教程
 >https://www.runoob.com/go/go-tutorial.html
+
+## 环境安装
+
+>https://golang.google.cn/dl/
 
 ## 运行脚本
 
