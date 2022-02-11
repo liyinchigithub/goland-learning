@@ -2,24 +2,22 @@
 
 >https://www.runoob.com/go/go-tutorial.html
 
-## 环境安装
-
->https://golang.google.cn/dl/
-
+## 安装
 
 ### 环境变量配置
+
 安装Go语言需要配置的环境变量有GOROOT、GOPATH和Path
 
 #### 【Windows】
 
-假设Go安装路径为/soft/Go/
+假设Go安装路径为/usr/local/go
 
 (1)配置GOROOT
-GOROOT的变量值即为GO的安装目录/soft/Go/
+GOROOT的变量值即为GO的安装目录/usr/local/go
 (2)配置GOPATH
-GOPATH的变量值即为存储Go语言项目的路径/soft/Go/project
+GOPATH的变量值即为存储Go语言项目的路径/usr/local/go/project
 (3)配置Path
-Path中有其他安装程序的配置信息，这里再增加一个GO的bin目录/soft/Go/bin
+Path中有其他安装程序的配置信息，这里再增加一个GO的bin目录/usr/local/go/bin
 (4)验证是否配置成功
 ```shell
 go env
@@ -52,24 +50,37 @@ vim /etc/profile
 ```
 (2)加入内容
 ```shell  
-export GOROOT=/usr/local/go   
-export GOPATH=/usr/share/nginx/go
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+# goland
+export GOROOT=/usr/local/go
+export GOPATH=/usr/local/go/gopath/
+export PATH=$PATH:$GOROOT/bin
 ```
+>在gopath文件夹下新建src、bin、pkg三个文件夹
 (3)刷新
 ```shell
 source /etc/profile
 ```
 
 
-【mac】
+#### 【mac】
+
+[下载pkg安装包](https://golang.google.cn/dl/)
 
 ```shell
-export GOROOT=/usr/local/Cellar/go/1.14.2_1/libexec
-export GOARCH=amd64
-export GOOS=darwin
-export GOPATH=/Users/liyinchi/go
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+# goland
+export GOROOT=/usr/local/go
+export GOPATH=/usr/local/go/gopath/
+export PATH=$PATH:$GOROOT/bin
+```
+>在gopath文件夹下新建src、bin、pkg三个文件夹
+
+```shell
+source .bash_profile
+```
+
+[hombrew安装方式]
+```shell
+brew install go
 ```
 
 
@@ -90,3 +101,57 @@ go build ./src/hello.go
 ```shell
 go get -v github.com/sqs/goreturns
 ```
+
+
+# 依赖包管理
+
+
+## 查看已安装依赖包列表
+```shell
+go list -m
+```
+## 国内镜像
+
+### 【linux、mac】
+```shell
+# 官方
+go env -w  GOPROXY=https://goproxy.io
+# 阿里云
+go env -w GOPROXY=https://mirrors.aliyun.com/goproxy/
+# 七牛
+go env -w  GOPROXY=https://goproxy.cn
+# 确认镜像是否成功
+go env | grep GOPROXY
+```
+
+### 【windows】
+可以在 PowerShell 中设置：：
+
+#### 启用 Go Modules 功能
+```
+$env:GO111MODULE="on"
+
+
+## 安装
+```shell
+```
+
+>https://go.dev/blog/using-go-modules
+
+# 常见问题
+
+* 1.执行go list 提示”go list -m: not using modules“
+解决办法：
+go依赖模块是通过[go module](https://go.dev/blog/using-go-modules)管理
+
+* 2.执行go env 提示”go: GOPATH entry is relative; must be absolute path: "=/Users/liyinchi/gopath".For more details see: 'go help gopath'“
+解决办法：环境配置文件中gopath和goroot不能一样，在gopath文件夹下新建三个文件夹src、pkg、bin
+
+* 3.执行go get github.com/xuri/excelize/v2 提示”go: could not create module cache: mkdir /usr/local/go/gopath/pkg/mod: permission denied“
+解决办法：
+先执行mkdir /usr/local/go/gopath/pkg/mod
+再执行sudo go getgithub.com/xuri/excelize/v2
+
+* 4.
+
+5.
