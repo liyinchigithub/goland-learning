@@ -1,7 +1,7 @@
 package main // 包
 
 import "fmt" // 导入内置库
-
+import "go-os"
 func main() {
 	// 调试输出
 	fmt.Print("Hello World")
@@ -14,6 +14,8 @@ func main() {
 
 	// 数据库操作
 
+	// os
+	test_go_os()
 }
 
 /*

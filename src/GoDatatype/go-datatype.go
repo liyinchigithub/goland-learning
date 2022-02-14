@@ -1,4 +1,4 @@
-package test_datatype
+package go_datatype
 
 import (
 	"fmt"
@@ -28,13 +28,16 @@ func test_datatype() {
 	fmt.Println(name, age, blance)
 	// 定义多个变量
 	var a, b, c = 1, 2, 3
-	fmt.Printf("a=%d,b=%d,c=%d\n", a, b, c)
-	// 省略式声明变量
+	fmt.Printf("a=%d,b=%d,c=%d\n", a, b, c) // d十进制 b二进制 o八进制 x十六进制
+	// [省略式]
 	r := 1
 	fmt.Println(r)
-	// 声明变量，省略 var方式
+	// [省略var]
 	v_name := 1
 	fmt.Println("v_name", v_name)
+	// [省略数据类型]
+	address="quanzhou"
+	fmt.Println(address)
 	// 数字
 	var d int = 1
 	fmt.Println(d)

@@ -1,4 +1,4 @@
-package test_go_os
+package go_os
 
 import "os"
 
