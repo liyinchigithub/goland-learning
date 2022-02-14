@@ -11,8 +11,8 @@ import (
 	[声明变量]
 	var name type
 	var 是声明变量的关键字，name 是变量名，type 是变量的类型,明变量时将变量的类型放在变量的名称之后。
-	例如：声明两个变量都是指针
-	var a, b *int
+	例如：声明两个变量都是指针	var a, b *int
+	[对数据类型转换比较严格，不支持隐式数据转换，只能显示转换]
 */
 func test_datatype() {
 	// 常量
@@ -52,6 +52,25 @@ func test_datatype() {
 	// 数组
 	// 对象
 	//
-	//
-	fmt.Println("")
+	// 默认值
+	var a bool = false
+	var b = "data type is string" // 字符串，不定义数据类型直接赋值s
+	var c int                     // 不赋值默认为0
+	var d string                  // 不赋值默认为字符串为 ""（空字符串）
+	println(a)
+	println(b)
+	println(c)
+	println(d)
+	var a1 *int
+	var a2 []int
+	var a3 map[string]int
+	var a4 chan int
+	var a5 func(string) int
+	var a6 error    // error 是接口
+	fmt.Println(a1) // <nil>
+	fmt.Println(a2) // []
+	fmt.Println(a3) // map[]
+	fmt.Println(a4) // <nil>
+	fmt.Println(a5) // <nil>
+	fmt.Println(a6) // <nil>
 }
