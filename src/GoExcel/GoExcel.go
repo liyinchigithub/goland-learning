@@ -1,4 +1,4 @@
-package test_go_excel
+package GoExcel
 
 import (
 	"fmt"
@@ -21,7 +21,7 @@ import (
 */
 
 // 创建excel
-func createExcel() {
+func TestCreateExcel() {
 	f := excelize.NewFile()
 	// 创建一个工作表
 	index := f.NewSheet("Sheet2")
@@ -37,7 +37,7 @@ func createExcel() {
 }
 
 // 读取excel
-func readExcel() {
+func TestReadExcel() {
 	f, err := excelize.OpenFile("Book1.xlsx")
 	if err != nil {
 		fmt.Println(err)

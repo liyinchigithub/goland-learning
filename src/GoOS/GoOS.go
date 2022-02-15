@@ -1,8 +1,11 @@
-package go_os
+package GoOS
 
-import "os"
+import(
+	"os"
+	"fmt"
+)
 
-func test_go_os() {
+func GoOS() {
 	var arr = os.Args
 	fmt.Println(arr)
 	if arr[0] == "ok" {
@@ -11,3 +14,9 @@ func test_go_os() {
 		println(`不是OK%v`, arr[1])
 	}
 }
+
+/* 
+
+	运行单元测试
+	/usr/local/go/bin/go test -timeout 30s -run ^TestGoOS$
+*/

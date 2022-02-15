@@ -1,11 +1,13 @@
 package main // 包
 
-import "fmt" // 导入内置库
-import "go-os"
+import (
+	"fmt"
+	"os"
+) // 导入内置库
 func main() {
 	// 调试输出
-	fmt.Print("Hello World")
-	fmt.Println("hello world")
+	// fmt.Print("Hello World")
+	// fmt.Println("hello world")
 	// 字符串格式化
 
 	// 数据类型
@@ -20,7 +22,8 @@ func main() {
 	if arr[0] == "ok" {
 		os.Exit(0) //main方法退出
 	} else {
-		println(`不是OK%v`, arr[1])
+		fmt.Println(arr)
+		fmt.Println(`不是OK%d`, arr[1])
 	}
 }
 

@@ -1,4 +1,4 @@
-package unit_test
+package GoUnitTest
 
 // go单元测试
 import (
@@ -32,9 +32,6 @@ func TestB(t *testing.T) {
 	// fmt.println("单元测试TestB") // 单元你测试中不使用这个会异常报错 ./unit_test.go:34:2: cannot refer to unexported name fmt.println
 }
 
-func TestC(t *testing.T){
-	TestTableFib()
-}
 
 func Fib(n int) int {
 	if n < 2 {
@@ -62,12 +59,14 @@ func TestFib(t *testing.T) {
 	cd src/unit-test/
 	go test -v -run=TestA unit_test.go //测试执行TestA 方法
 	go test -v -run=TestB unit_test.go //测试执行TestB 方法
+	/usr/local/go/bin/go test -v -timeout 30s -run TestB
+	/usr/local/go/bin/go test unit_test.go -timeout 30s 
 	go test -v unit_test.go //测试执行unit_test.go文件中的所有方法
 	go test . // 测试文件夹下所有
 */
 
 
-// 数据驱动测试
+// 数据驱动
 
 func TestTableFib(t *testing.T) {
     var fibTests = []struct {
@@ -83,10 +82,10 @@ func TestTableFib(t *testing.T) {
         {7, 13},
     }
 
-    for _, tt := range fibTests {
-        actual := Fib(tt.in)
-        if actual != tt.expected {
-            t.Errorf("Fib(%d) = %d; expected %d", tt.in, actual, tt.expected)
+    for _, v := range fibTests {
+        actual := Fib(v.in)
+        if actual != v.expected {
+            t.Errorf("Fib(%d) = %d; expected %d", v.in, actual, v.expected)
         }
     }
 }

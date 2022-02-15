@@ -78,10 +78,16 @@ export PATH=$PATH:$GOROOT/bin
 source .bash_profile
 ```
 
+查看GOROOT环境变量
+```shell
+echo $GOROOT
+```
+
 [hombrew安装方式]
 ```shell
 brew install go
 ```
+
 
 
 ## 运行脚本
@@ -130,7 +136,7 @@ go env | grep GOPROXY
 #### 启用 Go Modules 功能
 ```
 $env:GO111MODULE="on"
-
+```
 
 ## 安装
 

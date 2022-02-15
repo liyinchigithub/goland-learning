@@ -1,4 +1,4 @@
-package test_string
+package GoStrings
 
 import (
 	"fmt"
@@ -9,7 +9,7 @@ import (
 	Go常用的字符串处理函数
 	https://www.cnblogs.com/yang-2018/p/11112996.html
 */
-func test_string() {
+func GoStrings() {
 	var s string = "hello go"
 	//判断字符串s是否包含子串
 	r := strings.Contains(s, "go")

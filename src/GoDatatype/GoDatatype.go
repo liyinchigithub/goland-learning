@@ -1,4 +1,4 @@
-package go_datatype
+package GoDatatype
 
 import (
 	"fmt"
@@ -14,7 +14,8 @@ import (
 	例如：声明两个变量都是指针	var a, b *int
 	[对数据类型转换比较严格，不支持隐式数据转换，只能显示转换]
 */
-func test_datatype() {
+
+func GoDatatype() {// 变量名必须大写，才能被同包下其他函数调用
 	// 常量
 	const pi = 3.14
 	fmt.Println(pi)
@@ -27,8 +28,8 @@ func test_datatype() {
 	)
 	fmt.Println(name, age, blance)
 	// 定义多个变量
-	var a, b, c = 1, 2, 3
-	fmt.Printf("a=%d,b=%d,c=%d\n", a, b, c) // d十进制 b二进制 o八进制 x十六进制
+	var a1, b1, c1 = 1, 2, 3
+	fmt.Printf("a=%d,b=%d,c=%d\n", a1, b1, c1) // d十进制 b二进制 o八进制 x十六进制
 	// [省略式]
 	r := 1
 	fmt.Println(r)
@@ -36,14 +37,14 @@ func test_datatype() {
 	v_name := 1
 	fmt.Println("v_name", v_name)
 	// [省略数据类型]
-	address="quanzhou"
+	var address="quanzhou"
 	fmt.Println(address)
 	// 数字
-	var d int = 1
-	fmt.Println(d)
+	var d1 int = 1
+	fmt.Println(d1)
 	// 字符串
-	var address string = "xiamen"
-	fmt.Println(address)
+	var address2 string = "xiamen"
+	fmt.Println(address2)
 	// 数字
 	var g int = 1
 	// 浮点型
@@ -64,16 +65,16 @@ func test_datatype() {
 	println(b)
 	println(c)
 	println(d)
-	var a1 *int
-	var a2 []int
-	var a3 map[string]int
-	var a4 chan int
-	var a5 func(string) int
-	var a6 error    // error 是接口
-	fmt.Println(a1) // <nil>
-	fmt.Println(a2) // []
-	fmt.Println(a3) // map[]
-	fmt.Println(a4) // <nil>
-	fmt.Println(a5) // <nil>
-	fmt.Println(a6) // <nil>
+	var a11 *int
+	var a22 []int
+	var a33 map[string]int
+	var a44 chan int
+	// var a55 func(string) int
+	var a66 error    // error 是接口
+	fmt.Println(a11) // <nil>
+	fmt.Println(a22) // []
+	fmt.Println(a33) // map[]
+	fmt.Println(a44) // <nil>
+	// fmt.Println(a55) // <nil>
+	fmt.Println(a66) // <nil>
 }
