@@ -8,10 +8,12 @@ import(
 func GoOS() {
 	var arr = os.Args
 	fmt.Println(arr)
-	if arr[0] == "ok" {
+	if string(arr[1]) == "ok" {
+		fmt.Println(`是OK%d`, arr[1])
 		os.Exit(0) //main方法退出
 	} else {
-		println(`不是OK%v`, arr[1])
+		fmt.Println(arr)
+		fmt.Println(`不是OK%d`, arr[1])
 	}
 }
 
