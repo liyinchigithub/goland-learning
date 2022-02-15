@@ -18,5 +18,5 @@ func GoOS() {
 /* 
 
 	运行单元测试
-	/usr/local/go/bin/go test -timeout 30s -run ^TestGoOS$
+	sudo /usr/local/go/bin/go test -timeout 30s -run ^TestGoOS$
 */

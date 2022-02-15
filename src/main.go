@@ -19,7 +19,8 @@ func main() {
 	// os
 	var arr = os.Args
 	fmt.Println(arr)
-	if arr[0] == "ok" {
+	if string(arr[1]) == "ok" {
+		fmt.Println(`是OK%d`, arr[1])
 		os.Exit(0) //main方法退出
 	} else {
 		fmt.Println(arr)

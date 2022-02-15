@@ -59,8 +59,8 @@ func TestFib(t *testing.T) {
 	cd src/unit-test/
 	go test -v -run=TestA unit_test.go //测试执行TestA 方法
 	go test -v -run=TestB unit_test.go //测试执行TestB 方法
-	/usr/local/go/bin/go test -v -timeout 30s -run TestB
-	/usr/local/go/bin/go test unit_test.go -timeout 30s 
+	sudo /usr/local/go/bin/go test -v -timeout 30s -run TestB
+	sudo /usr/local/go/bin/go test unit_test.go -timeout 30s 
 	go test -v unit_test.go //测试执行unit_test.go文件中的所有方法
 	go test . // 测试文件夹下所有
 */
