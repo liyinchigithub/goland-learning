@@ -1,18 +1,19 @@
-package GoExcel
+package GoOperationalCharacter
 
 import (
 	"testing"
 )
-func TestGoExcelA(t *testing.T){
-	// 
-	TestCreateExcel();
+ // 运算符
+func TestGoOperationalCharacterA(t *testing.T)  {
+	// GoOperationalCharacterA()
+	// GoOperationalCharacterB()
+	// GoOperationalCharacterC()
+	// GoOperationalCharacterD()
+	// GoOperationalCharacterE()
+	GoOperationalCharacterF()
 }
 
-func TestGoExcelB(t *testing.T){
-	TestReadExcel();
-}
-
-/* 
+/*
 	[运行单元测试]
 	（1）运行文件夹下所有单元测试脚本
 	sudo /usr/local/go/bin/go test -timeout 30s
@@ -20,6 +21,4 @@ func TestGoExcelB(t *testing.T){
 	sudo /usr/local/go/bin/go test -timeout 30s -run TestGoExcelA
 	[单元测试文件名以_test结尾]
 	[函数大写Test开头]
-
-	单元测试入参使用数据驱动，不是用命令行，os.args仅引用于go run 脚本.go 入参...
 */

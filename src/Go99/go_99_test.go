@@ -1,15 +1,12 @@
-package GoExcel
+package Go99
 
 import (
 	"testing"
 )
-func TestGoExcelA(t *testing.T){
-	// 
-	TestCreateExcel();
-}
 
-func TestGoExcelB(t *testing.T){
-	TestReadExcel();
+func TestGo99(t *testing.T){
+	// t.Log("99乘法表")
+	Test99()
 }
 
 /* 
@@ -17,7 +14,7 @@ func TestGoExcelB(t *testing.T){
 	（1）运行文件夹下所有单元测试脚本
 	sudo /usr/local/go/bin/go test -timeout 30s
 	（2）运行指定单元测试脚本中的函数
-	sudo /usr/local/go/bin/go test -timeout 30s -run TestGoExcelA
+	sudo /usr/local/go/bin/go test -timeout 30s -run TestGo99
 	[单元测试文件名以_test结尾]
 	[函数大写Test开头]
 
