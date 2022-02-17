@@ -1,17 +1,17 @@
-package GoCondition
+package GoFor
 
-import  (
+import(
 	"testing"
 )
 
-func TestGoCondition(t *testing.T){
-	GoConditionA()
-	GoConditionB()
-	GoConditionC()
-	GoConditionD()
-	GoConditionE()
-	GoConditionF()
-	GoConditionG()
+func TestGoFor(t *testing.T){
+	// GoForA()
+	// GoForB()
+	// GoForC()
+	// GoForD()
+	GoForE()
+	// GoForF()
+	// GoForG()
 }
 
 /* 

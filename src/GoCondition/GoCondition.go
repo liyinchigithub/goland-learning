@@ -5,7 +5,9 @@ import (
 )
 
 /*
-	switch 默认情况下 case 最后自带 break 语句，匹配成功后就不会执行其他 case，如果我们需要执行后面的 case，可以使用 fallthrough 
+	switch 默认情况下 case 最后自带 break 语句  所以go switch 不用写break;
+	匹配成功后就不会执行其他 case，如果我们需要执行后面的 case，可以使用 fallthrough;
+	case 后面可以是常量、表达式
 */
 
 // if
@@ -76,6 +78,18 @@ func GoConditionE(){
 	case mark==3:fmt.Println("mark is 3")
 	default:
 		fmt.Printf("mark is %d",mark)
+	}
+	// 当出现多个 case 要放在一起的时候，可以写成下面这样
+	var a = "mum"
+	switch a {
+	case "mum", "daddy":
+		fmt.Println("family")
+	}
+	// case 后不仅仅只是常量，还可以和 if 一样添加表达式
+	var r int = 11
+	switch {
+	case r > 10 && r < 20:
+		fmt.Println(r)
 	}
 }
 
