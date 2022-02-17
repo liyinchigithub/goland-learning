@@ -112,7 +112,7 @@ func GoForI(){
 	var a int = 10
 
 	/* for 循环 */
-	for a < 20 {
+	for a < 20 {// 省略初始化和自增，默认初始化a从0开始
 	   if a == 15 {
 		  /* 跳过此次循环 */
 		  a = a + 1;
