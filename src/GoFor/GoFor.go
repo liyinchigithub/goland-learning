@@ -40,7 +40,7 @@ func GoForC(){
 		}
 	}
 }
-// For-each range 循环 这种格式的循环可以对[字符串]、[数组]、[切片]等进行迭代输出元素
+// For-each range 循环 这种格式的循环可以对[字符串]、[数组]、[切片 slice]、[map]等进行迭代输出元素for 循环的 
 func GoForD(){
 	arr:=[]string{"a","b","c"}
 	for i,j:= range arr {
@@ -90,9 +90,61 @@ func GoForG(){
     }
 }
 
-// for 循环的 range 格式可以对 slice、map、数组、字符串等进行迭代循环
+// break 跳出整个循环
 func GoForH(){
-	
+	/* 定义局部变量 */
+	var a int = 10
+
+	/* for 循环 */
+	for a < 20 {
+	   fmt.Printf("a 的值为 : %d\n", a);
+	   a++;
+	   if a > 15 {
+		  /* 使用 break 语句跳出循环 */
+		  break;
+	   }
+	}
+}
+
+// continue 仅跳过本次，执行下一个循环
+func GoForI(){
+	/* 定义局部变量 */
+	var a int = 10
+
+	/* for 循环 */
+	for a < 20 {
+	   if a == 15 {
+		  /* 跳过此次循环 */
+		  a = a + 1;
+		  continue;
+	   }
+	   fmt.Printf("a 的值为 : %d\n", a);
+	   a++;    
+	}  
+}
+
+/*
+goto 语句可以无条件地转移到过程中指定的行。
+goto 语句通常与条件语句配合使用。
+可用来实现[条件转移][构成循环][跳出循环体]等功能。
+但是，在结构化程序设计中一般不主张使用 goto 语句， 以免造成程序流程的混乱，使理解和调试程序都产生困难。
+*/ 
+
+// 在变量 a 等于 15 的时候跳过本次循环并回到循环的开始语句 LOOP 处
+func GoForJ(){
+	/* 定义局部变量 */
+	var a int = 10
+
+	/* 循环 */
+	LOOP: for a < 20 {
+	   if a == 15 {
+		  /* 跳过迭代 */
+		  a = a + 1
+		  goto LOOP
+	   }
+	   fmt.Printf("a的值为 : %d\n", a)
+	   a++    
+	}  
 }
 
 
