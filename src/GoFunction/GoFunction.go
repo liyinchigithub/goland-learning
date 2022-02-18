@@ -171,8 +171,29 @@ func getSequence() func() int {
 	}
  }
 
-// 
+/*
+	[函数方法]
+	Go语言中同时有[函数]和[方法]。
+	一个方法就是一个包含了接受者的函数，接受者可以是'命名类型'或者'结构体类型'的一个值或者是一个指针。
+	所有给定类型的方法属于该类型的方法集。
+	语法格式如下：
+*/ 
+
+/* 定义结构体 */
+type Circle struct {
+	// 结构体内定义变量和变量类型（属性、属性类型）
+	radius float64
+  }
+
+//该 method 属于 Circle 类型对象中的方法
+func (c Circle) getArea() float64 {
+	//c.radius 即为 Circle 类型对象中的属性
+	return 3.14 * c.radius * c.radius
+  }
 
 func GoFunctionG()  {
-	
+	var c1 Circle
+	c1.radius = 10.00
+	fmt.Println("圆的面积 = ", c1.getArea())//圆的面积 =  314
 }
+

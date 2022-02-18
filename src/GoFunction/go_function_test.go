@@ -10,7 +10,8 @@ func TestGoFunction(t *testing.T){
 	// GoFunctionC()
 	// GoFunctionD()
 	// GoFunctionE()
-	GoFunctionF()
+	// GoFunctionF()
+	GoFunctionG()
 }
 
 /* 
