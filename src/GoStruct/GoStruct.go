@@ -38,6 +38,13 @@ type Books struct {
 	book_id int		 // 书的id
  }
 
+ type Student struct{
+	 name string
+	 age int
+	 address string
+	 sex string
+	 isFat bool
+ }
 func GoStructA()  {
 	// 创建一个新的结构体（向结构体放入数据）
     fmt.Println(Books{"Go 语言", "www.runoob.com", "Go 语言教程", 6495407})
@@ -45,6 +52,9 @@ func GoStructA()  {
     fmt.Println(Books{title: "Go 语言", author: "www.runoob.com", subject: "Go 语言教程", book_id: 6495407})
     // 忽略的字段为 0 或 空（仅放入部分）
    	fmt.Println(Books{title: "Go 语言", author: "www.runoob.com"})
+	//
+	stu:=Student{"张三",22,"xiamen","boy",false}
+	fmt.Println(stu)
 }
 
 /*
@@ -116,7 +126,7 @@ func printBook( book Books ) {
 	fmt.Printf( "Book subject : %s\n", book.subject)
 	fmt.Printf( "Book book_id : %d\n", book.book_id)
  }
- 
+
 /*
 	[结构体指针]
 	可以定义指向结构体的指针类似于其他指针变量，格式如下：
@@ -147,6 +157,18 @@ func GoStructD()  {
 
    /* 打印 Book2 信息 */
    printBook2(&Book2) // 使用变量指针地址
+
+   /* 
+   输出：
+	Book title : Go 语言
+	Book author : www.runoob.com
+	Book subject : Go 语言教程
+	Book book_id : 6495407
+	Book title : Python 教程
+	Book author : www.runoob.com
+	Book subject : Python 语言教程
+	Book book_id : 6495700
+   */
 }
 
 func printBook2( book *Books ) { // 获取变量指针值

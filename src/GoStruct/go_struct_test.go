@@ -5,7 +5,7 @@ import (
 )
 func TestGoFunction(t *testing.T)  {
 	GoStructA()
-	GoStructB()
-	GoStructC()
-	GoStructD()
+	// GoStructB()
+	// GoStructC()
+	// GoStructD()
 }
