@@ -29,6 +29,10 @@ import (
 	或
 	variable_name := structure_variable_type { key1: value1, key2: value2..., keyn: valuen}
 	即将结构体赋值给某个变量
+
+	Go中的struct结构类似于面向对象中的类。
+	面向对象中，除了成员变量还有方法。
+	Go中也有方法，它是一种特殊的函数，定义于struct之上(与struct关联、绑定)，被称为struct的receiver。
 */
 
 type Books struct {
@@ -177,3 +181,5 @@ func printBook2( book *Books ) { // 获取变量指针值
 	fmt.Printf( "Book subject : %s\n", book.subject)
 	fmt.Printf( "Book book_id : %d\n", book.book_id)
  }
+
+
