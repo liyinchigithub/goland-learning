@@ -12,13 +12,13 @@
 
 假设Go安装路径为/usr/local/go
 
-(1)配置GOROOT
+* (1)配置GOROOT
 GOROOT的变量值即为GO的安装目录/usr/local/go
-(2)配置GOPATH
+* (2)配置GOPATH
 GOPATH的变量值即为存储Go语言项目的路径/usr/local/go/project
-(3)配置Path
+* (3)配置Path
 Path中有其他安装程序的配置信息，这里再增加一个GO的bin目录/usr/local/go/bin
-(4)验证是否配置成功
+* (4)验证是否配置成功
 ```shell
 go env
 ```
@@ -263,17 +263,24 @@ func TestFib(t *testing.T) {
 # 常见问题
 
 * 1.执行go list 提示”go list -m: not using modules“
+
 解决办法：
+
 go依赖模块是通过[go module](https://go.dev/blog/using-go-modules)管理
 
 * 2.执行go env 提示”go: GOPATH entry is relative; must be absolute path: "=/Users/liyinchi/gopath".For more details see: 'go help gopath'“
-解决办法：环境配置文件中gopath和goroot不能一样，在gopath文件夹下新建三个文件夹src、pkg、bin
+
+解决办法：
+
+环境配置文件中gopath和goroot不能一样，在gopath文件夹下新建三个文件夹src、pkg、bin
 
 * 3.执行go get github.com/xuri/excelize/v2 提示”go: could not create module cache: mkdir /usr/local/go/gopath/pkg/mod: permission denied“
+
 解决办法：
+
 先执行mkdir /usr/local/go/gopath/pkg/mod
 再执行sudo go getgithub.com/xuri/excelize/v2
 
 * 4.
 
-5.
+* 5.
