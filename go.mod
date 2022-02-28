@@ -16,4 +16,5 @@ require (
 	golang.org/x/net v0.0.0-20210726213435-c6fcb2dbf985 // indirect
 	golang.org/x/text v0.3.6 // indirect
 	golang.org/x/tools v0.0.0-20190328211700-ab21143f2384 // indirect
+	gopkg.in/h2non/gentleman.v2 v2.0.5 // indirect
 )

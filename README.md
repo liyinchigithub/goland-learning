@@ -94,13 +94,14 @@ brew install go
 ```shell
 go mod init
 ```
-
-执行上面命令后，自动创建一个 go.mod 文件来跟踪代码的依赖关系。
+执行命令go mod init在当前目录下生成一个go.mod文件，执行这条命令时，当前目录不能存在go.mod文件。如果之前生成过，要先删除；
+go.mod 文件来跟踪代码的依赖关系。
 该文件仅包含模块的名称和代码支持的 Go 版本。
 但是当您添加依赖项时，go.mod 文件将列出您的代码所依赖的版本。
 这使构建保持可重复性，并使您可以直接控制要使用的模块版本
 
 mod.go文件内容如下：
+
 ```go
 module demo
 
@@ -128,6 +129,27 @@ require (
 ```shell
 sudo chmod 777 /usr/local/go/gopath/pkg/mod/
 ```
+
+## 安装依赖
+
+如果有环境已有，直接执行安装依赖
+
+```shell
+go mod tidy
+```
+执行go mod tidy命令，它会添加缺失的模块以及移除不需要的模块。
+执行后会生成go.sum文件(模块下载条目)。添加参数-v，例如:go mod tidy -v可以将执行的信息，即删除和添加的包打印到命令行
+
+## 其他命令
+
+### go mod verify
+执行命令go mod verify来检查当前模块的依赖是否全部下载下来，是否下载下来被修改过。
+如果所有的模块都没有被修改过，那么执行这条命令之后，会打印all modules verified。
+
+### go mod vendor
+执行命令go mod vendor生成vendor文件夹，该文件夹下将会放置你go.mod文件描述的依赖包，文件夹下同时还有一个文件modules.txt，它是你整个工程的所有模块。
+在执行这条命令之前，如果你工程之前有vendor目录，应该先进行删除。
+同理go mod vendor -v会将添加到vendor中的模块打印出来；
 
 
 ## 运行脚本

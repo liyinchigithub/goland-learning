@@ -7,5 +7,5 @@ import(
 func TestGoHttpClientA(t *testing.T)  {
 	// GoNativeHttpClientGet() // Go native
 
-	SampleRequest()// Go gentleman
+	GentlemanSampleRequest()// Go gentleman
 }

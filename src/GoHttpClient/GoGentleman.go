@@ -11,6 +11,12 @@ import (
   
   )
 
+
+  /*
+ 	[API]
+	 https://pkg.go.dev/gopkg.in/h2non/gentleman.v2 
+  */
+
   func GentlemanSampleRequest(){
 	  // Create a new client
   cli := gentleman.New()
