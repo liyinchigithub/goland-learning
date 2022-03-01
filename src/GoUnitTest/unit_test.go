@@ -70,6 +70,7 @@ func TestFib(t *testing.T) {
 
 // 数据驱动
 func TestTableFib(t *testing.T) {
+	// 数组结构体？？？
     var fibTests = []struct {
         in       int // input
         expected int // expected result
@@ -82,7 +83,7 @@ func TestTableFib(t *testing.T) {
         {6, 8},
         {7, 13},
     }
-
+	// 第一个参数_为省略，可改为 i 即索引下标，第二参数v是索引下标值
     for _, v := range fibTests {
         actual := Fib(v.in)
         if actual != v.expected {

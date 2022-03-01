@@ -4,7 +4,10 @@ import "testing"
 
 
 func TestGoStrings(t *testing.T){
-	 GoStrings() 
+	GoStringsContains() 
+	GoStringsSplit()
+	GoStringsJoin()
+	GoStringsJoinArray()
 	t.Log("done")
 }
 
