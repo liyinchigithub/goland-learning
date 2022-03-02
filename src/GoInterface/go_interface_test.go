@@ -31,10 +31,17 @@ func (iPhone IPhone) call() {
 func Test(t *testing.T)  {
 	// 定义一个接口类型变量
 	var phone Phone
-	// 实例化
+	// 结构体实例化
+	var a =NokiaPhone{}
+	a.call()
+
 	phone = new(NokiaPhone)// 结构体实例化对象，接口类型变了可以存放实现该接口方法的实例对象
 	phone.call()
-	// 实例化
+	
+	// 结构体实例化
+	var b =IPhone{}
+	b.call()
+
 	phone = new(IPhone)// 结构体实例化对象，接口类型变了可以存放实现该接口方法的实例对象
 	phone.call()
 }
