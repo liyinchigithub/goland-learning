@@ -45,3 +45,34 @@ func Test(t *testing.T)  {
 	phone = new(IPhone)// 结构体实例化对象，接口类型变了可以存放实现该接口方法的实例对象
 	phone.call()
 }
+
+// 接口嵌套
+
+type Ainterfaceer interface{
+	Asay()
+	AMove()
+}
+
+// 接口A嵌套接口B
+type Binterfaceer interface{
+	Ainterfaceer
+}
+
+type Astruct struct{
+	name string
+	age int
+}
+
+type Bstruct struct{
+	name string
+	age int
+}
+
+func (a Astruct )Asay(name string ,age int)( string, int)  {
+	return name,age
+}
+
+func TestInterface(t *testing.T)  {
+	C:=Astruct{name:"李四",age:12}
+	fmt.Println(C.Asay("王五",22))
+}
