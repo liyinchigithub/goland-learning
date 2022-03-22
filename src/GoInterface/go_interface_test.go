@@ -46,33 +46,88 @@ func Test(t *testing.T)  {
 	phone.call()
 }
 
-// 接口嵌套
+/*
+	接口嵌套
+*/ 
 
-type Ainterfaceer interface{
-	Asay()
+// 定义接口
+type A_interfaceer interface{
+	Asay(name string ,age int)( string, int) 
 	AMove()
 }
 
-// 接口A嵌套接口B
-type Binterfaceer interface{
-	Ainterfaceer
+// 定义接口
+type B_interfaceer interface{
+	// 接口B嵌套接口A
+	A_interfaceer
 }
-
-type Astruct struct{
+// 定义结构体
+type A_struct struct{
 	name string
 	age int
 }
 
-type Bstruct struct{
-	name string
-	age int
+// 定义结构体
+type B_struct struct{
 }
 
-func (a Astruct )Asay(name string ,age int)( string, int)  {
+//	结构体A_struct实现了接口A的方法Asay()
+func (a A_struct )Asay(name string ,age int)( string, int)  {
 	return name,age
 }
 
+func (b B_struct)AMove()  {
+	fmt.Println("结构体B_struct实现了接口A_interfaceer的方法AMove()")
+}
+
+// 单元测试
 func TestInterface(t *testing.T)  {
-	C:=Astruct{name:"李四",age:12}
+	// 实例化结构体对象
+	C:=A_struct{name:"李四",age:12}
 	fmt.Println(C.Asay("王五",22))
+	
+	B:=B_struct{}
+	B.AMove()
+
+}
+
+
+/*
+	接口继承和重写
+*/ 
+
+type Employee struct {
+    Name string
+}
+
+func (e Employee) Work() {
+    println(e.Name, "work")
+}
+
+type Developer struct {
+    Employee // 无名称字段类型实现继承
+    Projects []string
+}
+
+// 实现重写
+func (d Developer) Work() {
+    println(d.Name, "work on projects", d.Projects)
+}
+
+type Worker interface {
+    Work()
+}
+
+// 定义函数
+func workerWork(worker Worker) {
+    worker.Work()
+}
+
+func TestOveri(t *testing.T) {
+    wongoo := Developer{
+        Employee: Employee{Name: "wongoo"},
+        Projects: []string{"gateway", "message"},// 切片
+    }
+    workerWork(wongoo)          // wongoo work on projects [gateway message]
+    workerWork(wongoo.Employee) // wongoo work
 }
