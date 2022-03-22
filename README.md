@@ -270,7 +270,7 @@ func TestFib(t *testing.T) {
 
 /*
 	[命令行运行]
-	cd src/unit-test/
+	cd src/GoUnitTest/
 	go test -v -run=TestA unit_test.go //测试执行TestA 方法
 	go test -v -run=TestB unit_test.go //测试执行TestB 方法
 	go test -v unit_test.go //测试执行unit_test.go文件中的所有方法
