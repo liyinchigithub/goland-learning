@@ -303,6 +303,20 @@ go依赖模块是通过[go module](https://go.dev/blog/using-go-modules)管理
 先执行mkdir /usr/local/go/gopath/pkg/mod
 再执行sudo go getgithub.com/xuri/excelize/v2
 
-* 4.
+* 4.安装依赖报错在镜像上面没有找到
+执行 go get xxxx
+go get: github.com/electricbubble/gidevice@v0.6.0: reading https://mirrors.aliyun.com/goproxy/github.com/electricbubble/gidevice/@v/v0.6.0.info: 404 Not Found
+
+解决办法：切换镜像到官方镜像或七牛
+
+```shell
+# 官方
+go env -w  GOPROXY=https://goproxy.io
+w GOPROXY=https://mirrors.aliyun.com/goproxy/
+# 七牛
+go env -w  GOPROXY=https://goproxy.cn
+# 确认镜像是否成功
+go env | grep GOPROXY
+```
 
 * 5.
