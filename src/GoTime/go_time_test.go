@@ -3,7 +3,8 @@ package GoTime
 import (
 	"testing"
 )
-func TestGoFunction(t *testing.T)  {
+
+func TestGoFunction(t *testing.T) {
 	GoTimeA()
 }
 

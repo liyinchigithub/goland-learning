@@ -319,4 +319,8 @@ go env -w  GOPROXY=https://goproxy.cn
 go env | grep GOPROXY
 ```
 
-* 5.
+* 5.格式化代码
+
+```shell
+go fmt .
+```
