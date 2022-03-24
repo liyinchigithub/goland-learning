@@ -1,11 +1,11 @@
 package GoHttpClient
 
-import(
+import (
 	"testing"
 )
 
-func TestGoHttpClientA(t *testing.T)  {
+func TestGoHttpClientA(t *testing.T) {
 	// GoNativeHttpClientGet() // Go native
 
-	GentlemanSampleRequest()// Go gentleman
+	GentlemanSampleRequest() // Go gentleman
 }

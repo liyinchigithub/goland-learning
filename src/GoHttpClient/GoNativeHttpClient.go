@@ -1,24 +1,24 @@
 package GoHttpClient
 
-import(
+import (
 	"fmt"
-	"strings"
-	"net/http"
 	"io/ioutil"
+	"net/http"
+	"strings"
 )
 
-func GoNativeHttpClientGet()  {
+func GoNativeHttpClientGet() {
 	url := "http://www.baidu.com"
-  	method := "GET"
+	method := "GET"
 	payload := strings.NewReader(``)
-	client := &http.Client {}
+	client := &http.Client{}
 	req, err := http.NewRequest(method, url, payload)
 
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
-  	// req.Header.Add("Cookie", "11111")
+	// req.Header.Add("Cookie", "11111")
 
 	res, err := client.Do(req)
 
@@ -35,44 +35,43 @@ func GoNativeHttpClientGet()  {
 		fmt.Println(err)
 		return
 	}
-	
+
 	fmt.Println(string(body))
 }
 
-func TestGoHttpClientPost(){
+func TestGoHttpClientPost() {
 	// 请求地址
 	url := "http://"
 	// 请求方式
 	method := "POST"
-	// 请求body 
+	// 请求body
 	payload := strings.NewReader(`{
 		"loginName": "",
 		"plainPassword": ""
 	}`)
 
-  client := &http.Client {
-  }
- 
-  req, err := http.NewRequest(method, url, payload)
+	client := &http.Client{}
 
-  if err != nil {
-    fmt.Println(err)
-    return
-  }
-  req.Header.Add("Content-Type", "application/json")
-  req.Header.Add("Cookie", "")
+	req, err := http.NewRequest(method, url, payload)
 
-  res, err := client.Do(req)
-  if err != nil {
-    fmt.Println(err)
-    return
-  }
-  defer res.Body.Close()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	req.Header.Add("Content-Type", "application/json")
+	req.Header.Add("Cookie", "")
 
-  body, err := ioutil.ReadAll(res.Body)
-  if err != nil {
-    fmt.Println(err)
-    return
-  }
-  fmt.Println(string(body))
+	res, err := client.Do(req)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	defer res.Body.Close()
+
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(string(body))
 }
