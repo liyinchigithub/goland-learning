@@ -21,15 +21,19 @@ func main() {
 	var args = os.Args
 	fmt.Println(args)
 	if string(args[1]) == "ok" {
-		fmt.Printf("命令行入参是：%s，不是OK\n", args[1])
+		fmt.Printf("命令行入参是：%s，是OK\n", args[1])
+		// 调用模块封装方法
+		GoStruct.GoStructB()
+
+
 		os.Exit(0) //main方法退出
 	} else {
 		fmt.Println(args)
 		fmt.Printf("命令行入参是：%s，不是OK\n", args[1])
 		os.Exit(0)//main方法退出
 	}
-	GoStruct.GoStructB()
 
+	
 }
 
 /*
