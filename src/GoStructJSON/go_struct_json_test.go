@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 func TestGoFunction(t *testing.T)  {
-	GoStructA()
+	GoStruct2JSON()
 	// GoStructB()
 	// GoStructC()
 	// GoStructD()

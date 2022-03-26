@@ -3,6 +3,7 @@ package main // 包
 import (
 	"fmt"
 	"os"
+	"GoStruct" // 需要把包放入 /usr/local/go/src/GoStruct
 ) // 导入内置库
 func main() {
 	// 调试输出
@@ -27,7 +28,7 @@ func main() {
 		fmt.Printf("命令行入参是：%s，不是OK\n", args[1])
 		os.Exit(0)//main方法退出
 	}
-
+	GoStruct.GoStructB()
 
 }
 

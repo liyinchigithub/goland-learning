@@ -3,7 +3,7 @@ package GoStructJSON
 import (
 	"fmt"
 	"encoding/json"
-	"math/rand"
+	// "math/rand"
 	
 )
 

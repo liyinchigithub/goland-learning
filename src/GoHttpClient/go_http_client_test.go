@@ -6,6 +6,8 @@ import (
 
 func TestGoHttpClientA(t *testing.T) {
 	// GoNativeHttpClientGet() // Go native
-
-	GentlemanSampleRequest() // Go gentleman
+	// GentlemanSampleRequest("http://httpbin.org/post") // Go gentleman
+	
 }
+
+

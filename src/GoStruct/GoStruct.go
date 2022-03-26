@@ -36,38 +36,39 @@ import (
 */
 
 type Books struct {
-	title string // 书的名称
-	author string // 书的作者
+	title   string // 书的名称
+	author  string // 书的作者
 	subject string // 书的主题
-	book_id int		 // 书的id
- }
+	book_id int    // 书的id
+}
 
- type Student struct{
-	 name string
-	 age int
-	 address string
-	 sex string
-	 isFat bool
- }
-func GoStructA()  {
+type Student struct {
+	name    string
+	age     int
+	address string
+	sex     string
+	isFat   bool
+}
+
+func GoStructA() {
 	// 创建一个新的结构体（向结构体放入数据）
-    fmt.Println(Books{"Go 语言", "www.runoob.com", "Go 语言教程", 6495407})
-    // 也可以使用 key => value 格式
-    fmt.Println(Books{title: "Go 语言", author: "www.runoob.com", subject: "Go 语言教程", book_id: 6495407})
-    // 忽略的字段为 0 或 空（仅放入部分）
-   	fmt.Println(Books{title: "Go 语言", author: "www.runoob.com"})
+	fmt.Println(Books{"Go 语言", "www.runoob.com", "Go 语言教程", 6495407})
+	// 也可以使用 key => value 格式
+	fmt.Println(Books{title: "Go 语言", author: "www.runoob.com", subject: "Go 语言教程", book_id: 6495407})
+	// 忽略的字段为 0 或 空（仅放入部分）
+	fmt.Println(Books{title: "Go 语言", author: "www.runoob.com"})
 	//
-	stu:=Student{"张三",22,"xiamen","boy",false}
+	stu := Student{"张三", 22, "xiamen", "boy", false}
 	fmt.Println(stu)
 }
 
 /*
 	[访问 结构体成员]
 	如果要访问结构体成员，需要使用点号 . 操作符，格式为：结构体.成员名
-*/ 
-func GoStructB()  {
-	var Book1 Books        /* 声明 Book1 为 Books 类型 */
-	var Book2 Books        /* 声明 Book2 为 Books 类型 */
+*/
+func GoStructB() {
+	var Book1 Books /* 声明 Book1 为 Books 类型 */
+	var Book2 Books /* 声明 Book2 为 Books 类型 */
 
 	/* book 1 描述 */
 	Book1.title = "Go 语言"
@@ -82,54 +83,54 @@ func GoStructB()  {
 	Book2.book_id = 6495700
 
 	/* 打印 Book1 信息 */
-	fmt.Printf( "Book 1 title : %s\n", Book1.title)
-	fmt.Printf( "Book 1 author : %s\n", Book1.author)
-	fmt.Printf( "Book 1 subject : %s\n", Book1.subject)
-	fmt.Printf( "Book 1 book_id : %d\n", Book1.book_id)
+	fmt.Printf("Book 1 title : %s\n", Book1.title)
+	fmt.Printf("Book 1 author : %s\n", Book1.author)
+	fmt.Printf("Book 1 subject : %s\n", Book1.subject)
+	fmt.Printf("Book 1 book_id : %d\n", Book1.book_id)
 
 	/* 打印 Book2 信息 */
-	fmt.Printf( "Book 2 title : %s\n", Book2.title)
-	fmt.Printf( "Book 2 author : %s\n", Book2.author)
-	fmt.Printf( "Book 2 subject : %s\n", Book2.subject)
-	fmt.Printf( "Book 2 book_id : %d\n", Book2.book_id)
+	fmt.Printf("Book 2 title : %s\n", Book2.title)
+	fmt.Printf("Book 2 author : %s\n", Book2.author)
+	fmt.Printf("Book 2 subject : %s\n", Book2.subject)
+	fmt.Printf("Book 2 book_id : %d\n", Book2.book_id)
 }
 
 /*
 	[结构体作为函数参数]
 	可以像其他数据类型一样将结构体类型作为参数传递给函数。
 	并以以上实例的方式访问结构体变量
-*/ 
+*/
 
-func GoStructC()  {
+func GoStructC() {
 	// 声明变量，变量类型是结构体
-   var Book1 Books        /* 声明 Book1 为 Books 类型 */
-   var Book2 Books        /* 声明 Book2 为 Books 类型 */
+	var Book1 Books /* 声明 Book1 为 Books 类型 */
+	var Book2 Books /* 声明 Book2 为 Books 类型 */
 
-   /* book 1 描述 */
-   Book1.title = "Go 语言"
-   Book1.author = "www.runoob.com"
-   Book1.subject = "Go 语言教程"
-   Book1.book_id = 6495407
+	/* book 1 描述 */
+	Book1.title = "Go 语言"
+	Book1.author = "www.runoob.com"
+	Book1.subject = "Go 语言教程"
+	Book1.book_id = 6495407
 
-   /* book 2 描述 */
-   Book2.title = "Python 教程"
-   Book2.author = "www.runoob.com"
-   Book2.subject = "Python 语言教程"
-   Book2.book_id = 6495700
+	/* book 2 描述 */
+	Book2.title = "Python 教程"
+	Book2.author = "www.runoob.com"
+	Book2.subject = "Python 语言教程"
+	Book2.book_id = 6495700
 
-   /* 打印 Book1 信息 */
-   printBook(Book1)
+	/* 打印 Book1 信息 */
+	printBook(Book1)
 
-   /* 打印 Book2 信息 */
-   printBook(Book2)
+	/* 打印 Book2 信息 */
+	printBook(Book2)
 }
 
-func printBook( book Books ) {
-	fmt.Printf( "Book title : %s\n", book.title)
-	fmt.Printf( "Book author : %s\n", book.author)
-	fmt.Printf( "Book subject : %s\n", book.subject)
-	fmt.Printf( "Book book_id : %d\n", book.book_id)
- }
+func printBook(book Books) {
+	fmt.Printf("Book title : %s\n", book.title)
+	fmt.Printf("Book author : %s\n", book.author)
+	fmt.Printf("Book subject : %s\n", book.subject)
+	fmt.Printf("Book book_id : %d\n", book.book_id)
+}
 
 /*
 	[结构体指针]
@@ -140,46 +141,57 @@ func printBook( book Books ) {
 	使用结构体指针访问结构体成员，使用 "." 操作符：
 	struct_pointer.title
 */
-func GoStructD()  {
-   var Book1 Books        /* 声明 Book1 为 Books 类型 */
-   var Book2 Books        /* 声明 Book2 为 Books 类型 */
+func GoStructD() {
+	var Book1 Books /* 声明 Book1 为 Books 类型 */
+	var Book2 Books /* 声明 Book2 为 Books 类型 */
 
-   /* book 1 描述 */
-   Book1.title = "Go 语言"
-   Book1.author = "www.runoob.com"
-   Book1.subject = "Go 语言教程"
-   Book1.book_id = 6495407
+	/* book 1 描述 */
+	Book1.title = "Go 语言"
+	Book1.author = "www.runoob.com"
+	Book1.subject = "Go 语言教程"
+	Book1.book_id = 6495407
 
-   /* book 2 描述 */
-   Book2.title = "Python 教程"
-   Book2.author = "www.runoob.com"
-   Book2.subject = "Python 语言教程"
-   Book2.book_id = 6495700
+	/* book 2 描述 */
+	Book2.title = "Python 教程"
+	Book2.author = "www.runoob.com"
+	Book2.subject = "Python 语言教程"
+	Book2.book_id = 6495700
 
-   /* 打印 Book1 信息 */
-   printBook2(&Book1) // 使用变量指针地址
+	/* 打印 Book1 信息 */
+	printBook2(&Book1) // 使用变量指针地址
 
-   /* 打印 Book2 信息 */
-   printBook2(&Book2) // 使用变量指针地址
+	/* 打印 Book2 信息 */
+	printBook2(&Book2) // 使用变量指针地址
 
-   /* 
-   输出：
-	Book title : Go 语言
-	Book author : www.runoob.com
-	Book subject : Go 语言教程
-	Book book_id : 6495407
-	Book title : Python 教程
-	Book author : www.runoob.com
-	Book subject : Python 语言教程
-	Book book_id : 6495700
-   */
+	/*
+		   输出：
+			Book title : Go 语言
+			Book author : www.runoob.com
+			Book subject : Go 语言教程
+			Book book_id : 6495407
+			Book title : Python 教程
+			Book author : www.runoob.com
+			Book subject : Python 语言教程
+			Book book_id : 6495700
+	*/
 }
 
-func printBook2( book *Books ) { // 获取变量指针值
-	fmt.Printf( "Book title : %s\n", book.title)
-	fmt.Printf( "Book author : %s\n", book.author)
-	fmt.Printf( "Book subject : %s\n", book.subject)
-	fmt.Printf( "Book book_id : %d\n", book.book_id)
- }
+func printBook2(book *Books) { // 获取变量指针值
+	fmt.Printf("Book title : %s\n", book.title)
+	fmt.Printf("Book author : %s\n", book.author)
+	fmt.Printf("Book subject : %s\n", book.subject)
+	fmt.Printf("Book book_id : %d\n", book.book_id)
+}
 
+/*
+	结构体的方法（相当于类的方法）
+*/
 
+func (books Books) GetBooks() {
+	fmt.Println("调用结构体方法")
+	/*
+		使用
+		var books Books
+		books.GetBooks()
+	*/
+}

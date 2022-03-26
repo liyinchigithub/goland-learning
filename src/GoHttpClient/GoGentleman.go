@@ -2,13 +2,13 @@ package GoHttpClient
 
 import (
 	"fmt"
-  // gentleman内置了将近 20 个插件，有身份认证相关的auth、有cookies、有压缩相关的compression、有代理相关的proxy、有重定向相关的redirect、有超时相关的timeout、有重试的retry、有服务发现的consul等等
+	// gentleman内置了将近 20 个插件，有身份认证相关的auth、有cookies、有压缩相关的compression、有代理相关的proxy、有重定向相关的redirect、有超时相关的timeout、有重试的retry、有服务发现的consul等等
 	"gopkg.in/h2non/gentleman.v2"
 	"gopkg.in/h2non/gentleman.v2/mux"
 	"gopkg.in/h2non/gentleman.v2/plugins/body"
+	"gopkg.in/h2non/gentleman.v2/plugins/headers" // header插件用于在发送请求前添加一些通用的首部，如 APIKey；或者删除一些自动加上的首部，如User-Agent。一般header插件应用在cli对象上
 	"gopkg.in/h2non/gentleman.v2/plugins/url"
-  "gopkg.in/h2non/gentleman.v2/plugins/headers" // header插件用于在发送请求前添加一些通用的首部，如 APIKey；或者删除一些自动加上的首部，如User-Agent。一般header插件应用在cli对象上
-  // "gopkg.in/h2non/gentleman.v2/plugins/query" // HTTP 请求通常会在 URL 的?后带上查询字符串（query string），gentleman的内置插件query可以很好的管理这个信息
+	// "gopkg.in/h2non/gentleman.v2/plugins/query" // HTTP 请求通常会在 URL 的?后带上查询字符串（query string），gentleman的内置插件query可以很好的管理这个信息
 )
 
 /*
@@ -18,13 +18,17 @@ import (
   https://zhuanlan.zhihu.com/p/127398199
 */
 
-func GentlemanSampleRequest() {
+type Client struct {
+	url string
+}
+
+func GentlemanSampleRequest(url string) {
 	// Create a new client
 	cli := gentleman.New() // 创建一个 HTTP 客户端cli
 
 	// Define the Base URL
-	cli.URL("http://httpbin.org/post") // 设置要请求的 URL 基础地址
-  cli.Use(headers.Set("Content-type", "application/json"))
+	cli.URL(url) // 设置要请求的 URL 基础地址
+	cli.Use(headers.Set("Content-type", "application/json"))
 	// Create a new request based on the current client
 	req := cli.Request() // 创建一个请求对象req
 
@@ -58,7 +62,7 @@ func GentlemanSampleRequest() {
 	fmt.Printf("Body: %s", res.String())
 }
 
-func GentlemanSendJsonBody() {
+func (client Client) GentlemanSendJsonBody() {
 	// Create a new client
 	cli := gentleman.New()
 
@@ -91,9 +95,9 @@ func GentlemanSendJsonBody() {
 
 }
 
-func GentlemanSenXMLBody() {
+func (client Client) GentlemanSenXMLBody() {
 }
-func GentlemanCompositionViaMultiplexer() {
+func (client Client) GentlemanCompositionViaMultiplexer() {
 	// Create a new client
 	cli := gentleman.New()
 
