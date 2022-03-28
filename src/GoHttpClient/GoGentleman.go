@@ -60,70 +60,134 @@ func GentlemanSampleRequest(url string) {
 	fmt.Printf("Status: %d\n", res.StatusCode)
 	// 响应内容
 	fmt.Printf("Body: %s", res.String())
+
+	/* 调试输出内容
+	Status: 200
+	Body: {
+	"args": {}, 
+	"data": "{\"foo\":\"bar\"}\n", 
+	"files": {}, 
+	"form": {}, 
+	"headers": {
+		"Accept-Encoding": "gzip", 
+		"Content-Length": "14", 
+		"Content-Type": "application/json", 
+		"Host": "httpbin.org", 
+		"User-Agent": "gentleman/2.0.5", 
+		"X-Amzn-Trace-Id": "Root=1-6241c6d3-5583ba4a24bad7d60ae19b9e"
+	}, 
+	"json": {
+		"foo": "bar"
+	}, 
+	"origin": "27.154.169.81", 
+	"url": "http://httpbin.org/post"
+	}
+	*/
 }
 
-func (client Client) GentlemanSendJsonBody() {
-	// Create a new client
+/*
+	content-type：application/json
+*/
+func GentlemanSendJsonBody(url string,obj map[string]string) {
+	// 创建客户端（实例化）
 	cli := gentleman.New()
 
-	// Define the Base URL
-	cli.URL("http://httpbin.org/post")
+	// 定义一个请求地址
+	cli.URL(url)
 
-	// Create a new request based on the current client
+	// 基于当前客户端创建一个新请求
 	req := cli.Request()
 
-	// Method to be used
+	// 请求方法
 	req.Method("POST")
 
-	// Define the JSON payload via body plugin
-	data := map[string]string{"foo": "bar"}
+	// 通过body插件，定义JSON有效负载
+	data := obj
 	req.Use(body.JSON(data))
 
-	// Perform the request
+	// 执行请求
 	res, err := req.Send()
+	// 判断是否请求异常
 	if err != nil {
 		fmt.Printf("Request error: %s\n", err)
 		return
 	}
+	// 判断是否请求失败（请求成功 res.Ok=true）
 	if !res.Ok {
 		fmt.Printf("Invalid server response: %d\n", res.StatusCode)
 		return
 	}
-
+	// 响应状态码
 	fmt.Printf("Status: %d\n", res.StatusCode)
+	// 响应body
 	fmt.Printf("Body: %s", res.String())
 
+	/*
+	调试输出内容：
+	Status: 200
+	Body: {
+	"args": {}, 
+	"data": "{\"username\":\"liyinchi\"}\n", 
+	"files": {}, 
+	"form": {}, 
+	"headers": {
+		"Accept-Encoding": "gzip", 
+		"Content-Length": "24", 
+		"Content-Type": "application/json", 
+		"Host": "httpbin.org", 
+		"User-Agent": "gentleman/2.0.5", 
+		"X-Amzn-Trace-Id": "Root=1-6241c6d4-4851139f086fcb890b9f5746"
+	}, 
+	"json": {
+		"username": "liyinchi"
+	}, 
+	"origin": "27.154.169.81", 
+	"url": "http://httpbin.org/post"
+	}	
+	*/
 }
 
-func (client Client) GentlemanSenXMLBody() {
+
+
+/*
+	content-type：application/xml
+*/
+func GentlemanSenXMLBody() {
 }
-func (client Client) GentlemanCompositionViaMultiplexer() {
-	// Create a new client
+/*
+	content-type：application/xml
+*/
+func GentlemanCompositionViaMultiplexer(Url  string) { // "http://httpbin.org"
+	// 创建客户端（实例化）
 	cli := gentleman.New()
 
-	// Define the server url (must be first)
-	cli.Use(url.URL("http://httpbin.org"))
+	// 定义服务器Url(必须是第一个)
+	cli.Use(url.URL(Url))
 
-	// Create a new multiplexer based on multiple matchers
+	// 基于多个匹配器创建一个新的多路复用器
 	mx := mux.If(mux.Method("GET"), mux.Host("httpbin.org"))
 
-	// Attach a custom plugin on the multiplexer that will be executed if the matchers passes
+	// 在多路复用器上附加一个自定义插件，如果匹配器通过将执行该插件
 	mx.Use(url.Path("/headers"))
 
-	// Attach the multiplexer on the main client
+	// 在主客户端连接多路复用器
 	cli.Use(mx)
 
-	// Perform the request
+	// 指定请求发送
 	res, err := cli.Request().Send()
+	
+		// 判断是否请求异常
 	if err != nil {
 		fmt.Printf("Request error: %s\n", err)
 		return
 	}
+	// 判断是否请求失败（请求成功 res.Ok=true）
 	if !res.Ok {
 		fmt.Printf("Invalid server response: %d\n", res.StatusCode)
 		return
 	}
-
+	// 响应状态码
 	fmt.Printf("Status: %d\n", res.StatusCode)
+	// 响应body
 	fmt.Printf("Body: %s", res.String())
 }
