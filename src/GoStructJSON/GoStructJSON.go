@@ -10,33 +10,34 @@ import (
 /*
 	@method  json.Marshal(struct变量)
 	@description 结构体转json字符串
+	参考：https://blog.csdn.net/zxy_666/article/details/80173288
 */ 
 func GoStruct2JSON()  {
 	type Student struct {
-		Id   int
-		Name string
-		Age  int //如果定义为age 私有属性不能被json包访问
-		Sno  string
+		Id   int	`json:"id"`
+		Name string	`json:"name"`
+		Age  int `json:"age"`//如果定义为age 私有属性不能被json包访问	
+		Sno  string	`json:"son"`
 	}
 	
-	//struct转json字符串
+	
 	var s = Student{
 		Id:   11,
 		Name: "小王",
 		Age:  10,
 		Sno:  "n201205",
 	}
-	fmt.Printf("%#v\n", s)//demo.Student{Id:11, Name:"小王", Age:10, Sno:"n201205"}
-	jsonByte,_ := json.Marshal(s)
+	fmt.Printf("%#v\n", s) //	GoStructJSON.Student{Id:11, Name:"小王", Age:10, Sno:"n201205"}
+	jsonByte,_ := json.Marshal(s) //struct转json字符串
 	jsonStr := string(jsonByte)
-	fmt.Println(jsonStr)//{"Id":11,"Name":"小王","Age":10,"Sno":"n201205"}
+	fmt.Println(jsonStr) //	{"id":11,"name":"小王","age":10,"son":"n201205"}
 	
 	
 }
 
 /*
-@method   json.Unmarshal()
-@description json字符串转结构体
+	@method   json.Unmarshal()
+	@description json字符串转结构体
 */ 
 func GoJSON2Struct()  {
 	type Teacher struct {

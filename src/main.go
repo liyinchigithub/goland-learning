@@ -5,6 +5,7 @@ import (
 	// "os"
 	"GoStruct"         // 引入模块第一种方式：需要把包放入 /usr/local/go/src/GoStruct。
 	"src/GoHttpClient" // 引入模块第二种方式：配合go.mod文件，需与main.go在同一个目录下。
+	"src/GoStructJSON"
 ) // 导入内置库
 func main() {
 	// 调试输出
@@ -16,8 +17,8 @@ func main() {
 	GoHttpClient.GentlemanSendJsonBody("http://httpbin.org/post", map[string]string{"username": "liyinchi"})
 	// GoHttpClient.GoNativeHttpClientGet()
 
-	// 字符串格式化
-
+	// 字符串转json
+	GoStructJSON.GoStruct2JSON()
 	// 数据类型
 
 	// excel操作
