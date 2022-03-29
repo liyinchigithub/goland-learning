@@ -18,7 +18,8 @@ func main() {
 	// GoHttpClient.GoNativeHttpClientGet()
 
 	// 字符串转json
-	GoStructJSON.GoStruct2JSON()
+	// GoStructJSON.GoStruct2JSON()
+	GoStructJSON.GoJSON2SubNode()
 	// 数据类型
 
 	// excel操作

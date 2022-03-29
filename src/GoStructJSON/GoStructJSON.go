@@ -8,19 +8,19 @@ import (
 )
 
 /*
-	@method  json.Marshal(struct变量)
-	@description 结构体转json字符串
+	json.Marshal(struct变量)  结构体[转]json字符串（字符串转json）
 	参考：https://blog.csdn.net/zxy_666/article/details/80173288
 */ 
 func GoStruct2JSON()  {
+	// 结构体
 	type Student struct {
-		Id   int	`json:"id"`
-		Name string	`json:"name"`
-		Age  int `json:"age"`//如果定义为age 私有属性不能被json包访问	
+		Id   int	`json:"id"` // 如果变量打上了json标签，如：Name旁边的 `json:"name"` ，那么转化成的json key就用该标签“name”，否则取变量名作为key，如“Age”，“HIgh”。
+		Name string	`json:"name"`// 注意：如果定义为小写字母开头 私有属性不能被json包访问
+		Age  int `json:"age"`	
 		Sno  string	`json:"son"`
 	}
 	
-	
+	// 实例化结构体，相当于类的实例化
 	var s = Student{
 		Id:   11,
 		Name: "小王",
@@ -28,8 +28,7 @@ func GoStruct2JSON()  {
 		Sno:  "n201205",
 	}
 	fmt.Printf("%#v\n", s) //	GoStructJSON.Student{Id:11, Name:"小王", Age:10, Sno:"n201205"}
-
-	//struct转json字符串
+	// struct转json字符串
 	jsonByte,_ := json.Marshal(s) 
 	// json转字符串
 	jsonStr := string(jsonByte)
@@ -39,10 +38,10 @@ func GoStruct2JSON()  {
 }
 
 /*
-	@method   json.Unmarshal()
-	@description json字符串转结构体
+	json.Unmarshal()	json字符串[转]结构体
 */ 
 func GoJSON2Struct()  {
+	// 定义结构体
 	type Teacher struct {
 		Id   int
 		Name string
@@ -50,13 +49,18 @@ func GoJSON2Struct()  {
 		Tno  string
 	}
 	// json字符串
-	var str = `{"Id":11,"Name":"王老师","Age":30,"Tno":"t201205"}`
+	var str = `{"Id":11,"Name":"王老师","Age":30,"Tno":"t201205"}`// 也可以写成"{\"Id\":11,\"Name\":\"王老师\",\"Age\":30,\"Tno\":\"t201205\"}"
+	// 实例化结构体
 	var tea Teacher
+	// json字符串[转]结构体
 	err := json.Unmarshal([]byte(str),&tea)
+	// 
 	if err !=nil{
 		fmt.Println(err)
 	}
-	fmt.Printf("%#v\n",tea)//demo.Teacher{Id:11, Name:"王老师", Age:30, Tno:"t201205"}
+	// 
+	fmt.Printf("%#v\n",tea)// GoJSON2Struct.Teacher{Id:11, Name:"王老师", Age:30, Tno:"t201205"}
+	// 获取结构体属性的值
 	fmt.Println(tea.Tno)//t201205
 	
 }
@@ -64,15 +68,49 @@ func GoJSON2Struct()  {
 
 
 /*
-@method   json.Unmarshal()
-@description [嵌套结构]json字符串转结构体
-@document https://blog.csdn.net/wangyufeng43400141/article/details/107139182
+	json.Unmarshal()
+	[嵌套结构]json字符串转结构体
+	https://blog.csdn.net/wangyufeng43400141/article/details/107139182
 */ 
 
 
+func GoJSON2SubNode()  {
+	type Class struct {
+		Name  string
+		Grade int
+	}
 
-/*
-	@method   json.Unmarshal()
-	@description [嵌套结构]json字符串转结构体
-	@document https://blog.csdn.net/wangyufeng43400141/article/details/107139182
-*/ 
+	type Stu struct {
+		Name  string `json:"name"`
+		Age   int
+		HIgh  bool
+		sex   string
+		Class *Class `json:"class"`
+	}
+	
+
+	//实例化一个数据结构，用于生成json字符串
+    stu := Stu{
+        Name: "张三",
+        Age:  18,
+        HIgh: true,
+        sex:  "男",
+    }
+
+    //指针变量
+    cla := new(Class)
+    cla.Name = "1班"
+    cla.Grade = 3
+    stu.Class=cla
+
+    //Marshal失败时err!=nil
+    jsonStu, err := json.Marshal(stu)
+	// 
+    if err != nil {
+        fmt.Println("生成json字符串错误")
+    }
+
+    //jsonStu是[]byte类型，转化成string类型便于查看
+    fmt.Println(string(jsonStu))
+	// 输出：{"name":"张三","Age":18,"HIgh":true,"class":{"Name":"1班","Grade":3}}
+}
