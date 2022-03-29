@@ -28,7 +28,10 @@ func GoStruct2JSON()  {
 		Sno:  "n201205",
 	}
 	fmt.Printf("%#v\n", s) //	GoStructJSON.Student{Id:11, Name:"小王", Age:10, Sno:"n201205"}
-	jsonByte,_ := json.Marshal(s) //struct转json字符串
+
+	//struct转json字符串
+	jsonByte,_ := json.Marshal(s) 
+	// json转字符串
 	jsonStr := string(jsonByte)
 	fmt.Println(jsonStr) //	{"id":11,"name":"小王","age":10,"son":"n201205"}
 	
