@@ -2,6 +2,7 @@ package GoHttpClient
 
 import (
 	"fmt"
+	"os"
 	// gentleman内置了将近 20 个插件，有身份认证相关的auth、有cookies、有压缩相关的compression、有代理相关的proxy、有重定向相关的redirect、有超时相关的timeout、有重试的retry、有服务发现的consul等等
 	"gopkg.in/h2non/gentleman.v2"
 	"gopkg.in/h2non/gentleman.v2/mux"
@@ -64,22 +65,22 @@ func GentlemanSampleRequest(url string) {
 	/* 调试输出内容
 	Status: 200
 	Body: {
-	"args": {}, 
-	"data": "{\"foo\":\"bar\"}\n", 
-	"files": {}, 
-	"form": {}, 
+	"args": {},
+	"data": "{\"foo\":\"bar\"}\n",
+	"files": {},
+	"form": {},
 	"headers": {
-		"Accept-Encoding": "gzip", 
-		"Content-Length": "14", 
-		"Content-Type": "application/json", 
-		"Host": "httpbin.org", 
-		"User-Agent": "gentleman/2.0.5", 
+		"Accept-Encoding": "gzip",
+		"Content-Length": "14",
+		"Content-Type": "application/json",
+		"Host": "httpbin.org",
+		"User-Agent": "gentleman/2.0.5",
 		"X-Amzn-Trace-Id": "Root=1-6241c6d3-5583ba4a24bad7d60ae19b9e"
-	}, 
+	},
 	"json": {
 		"foo": "bar"
-	}, 
-	"origin": "27.154.169.81", 
+	},
+	"origin": "27.154.169.81",
 	"url": "http://httpbin.org/post"
 	}
 	*/
@@ -88,7 +89,7 @@ func GentlemanSampleRequest(url string) {
 /*
 	content-type：application/json
 */
-func GentlemanSendJsonBody(url string,obj map[string]string) {
+func GentlemanSendJsonBody(url string, obj map[string]string) {
 	// 创建客户端（实例化）
 	cli := gentleman.New()
 
@@ -123,41 +124,90 @@ func GentlemanSendJsonBody(url string,obj map[string]string) {
 	fmt.Printf("Body: %s", res.String())
 
 	/*
-	调试输出内容：
-	Status: 200
-	Body: {
-	"args": {}, 
-	"data": "{\"username\":\"liyinchi\"}\n", 
-	"files": {}, 
-	"form": {}, 
-	"headers": {
-		"Accept-Encoding": "gzip", 
-		"Content-Length": "24", 
-		"Content-Type": "application/json", 
-		"Host": "httpbin.org", 
-		"User-Agent": "gentleman/2.0.5", 
-		"X-Amzn-Trace-Id": "Root=1-6241c6d4-4851139f086fcb890b9f5746"
-	}, 
-	"json": {
-		"username": "liyinchi"
-	}, 
-	"origin": "27.154.169.81", 
-	"url": "http://httpbin.org/post"
-	}	
+		调试输出内容：
+		Status: 200
+		Body: {
+		"args": {},
+		"data": "{\"username\":\"liyinchi\"}\n",
+		"files": {},
+		"form": {},
+		"headers": {
+			"Accept-Encoding": "gzip",
+			"Content-Length": "24",
+			"Content-Type": "application/json",
+			"Host": "httpbin.org",
+			"User-Agent": "gentleman/2.0.5",
+			"X-Amzn-Trace-Id": "Root=1-6241c6d4-4851139f086fcb890b9f5746"
+		},
+		"json": {
+			"username": "liyinchi"
+		},
+		"origin": "27.154.169.81",
+		"url": "http://httpbin.org/post"
+		}
 	*/
 }
-
-
 
 /*
 	content-type：application/xml
 */
 func GentlemanSenXMLBody() {
+	type User struct {
+		Name string `xml:"name"`
+		Age  int    `xml:"age"`
+	}
+
+	cli := gentleman.New()
+	cli.URL("http://httpbin.org/post")
+
+	req := cli.Request()
+	req.Method("POST")
+	// 实例化结构体
+	u := User{Name: "dj", Age: 18}
+	// 使用 body.XML插件
+	req.Use(body.XML(u))
+
+	// 执行请求
+	res, err := req.Send()
+	// 判断是否请求异常
+	if err != nil {
+		fmt.Printf("Request error: %s\n", err)
+		return
+	}
+	// 判断是否请求失败（请求成功 res.Ok=true）
+	if !res.Ok {
+		fmt.Printf("Invalid server response: %d\n", res.StatusCode)
+		return
+	}
+	// 响应状态码
+	fmt.Printf("XML Status: %d\n", res.StatusCode) // 200
+	// 响应body
+	fmt.Printf("XML Body: %s", res.String())
+	/*
+		XML Body: {
+					"args": {},
+					"data": "<User><name>dj</name><age>18</age></User>",
+					"files": {},
+					"form": {},
+					"headers": {
+						"Accept-Encoding": "gzip",
+						"Content-Length": "41",
+						"Content-Type": "application/xml",
+						"Host": "httpbin.org",
+						"User-Agent": "gentleman/2.0.5",
+						"X-Amzn-Trace-Id": "Root=1-624462ce-186d339f2fd3e1f774fb15e4"
+					},
+					"json": null,
+					"origin": "121.207.135.241",
+					"url": "http://httpbin.org/post"
+					}
+	*/
 }
+
 /*
 	content-type：application/xml
 */
-func GentlemanCompositionViaMultiplexer(Url  string) { // "http://httpbin.org"
+func GentlemanCompositionViaMultiplexer(Url string) { // "http://httpbin.org"
 	// 创建客户端（实例化）
 	cli := gentleman.New()
 
@@ -175,8 +225,8 @@ func GentlemanCompositionViaMultiplexer(Url  string) { // "http://httpbin.org"
 
 	// 指定请求发送
 	res, err := cli.Request().Send()
-	
-		// 判断是否请求异常
+
+	// 判断是否请求异常
 	if err != nil {
 		fmt.Printf("Request error: %s\n", err)
 		return
@@ -190,4 +240,36 @@ func GentlemanCompositionViaMultiplexer(Url  string) { // "http://httpbin.org"
 	fmt.Printf("Status: %d\n", res.StatusCode)
 	// 响应body
 	fmt.Printf("Body: %s", res.String())
+}
+
+func QueryUrlParamRequest() {
+	cli := gentleman.New()
+	cli.URL("https://api.thecatapi.com/")
+
+	cli.Use(headers.Set("x-api-key", "479ce48d-db30-46a4-b1a0-91ac4c1477b8"))
+	cli.Use(url.Path("/v1/:type"))
+	// 遍历命令行入参 
+	for _, arg := range os.Args[1:] {
+		//  基于客户端创建心情求
+		req := cli.Request()
+		// 将参数加入到url
+		req.Use(url.Param("type", arg))// /v1/breeds、/v1/votes、/v1/categories
+		// 执行 请求
+		res, err := req.Send()
+		if err != nil {
+			fmt.Printf("Request error: %s\n", err)
+			return
+		}
+		if !res.Ok {
+			fmt.Printf("Invalid server response: %d\n", res.StatusCode)
+			return
+		}
+
+		fmt.Printf("Query  Status: %d\n", res.StatusCode)
+		fmt.Printf("Query Body: %s\n", res.String())
+	}
+	/*
+	命令行执行：
+	go run main.go breeds votes categories
+	*/
 }

@@ -13,10 +13,11 @@ func main() {
 	fmt.Println("hello world")
 	// 客户端请求
 	GoStruct.GoStructB()                                           // 模块引入第一种方式：将模块拷贝到目录/usr/local/go/src/GoStruct下，调用模块封装方法
-	GoHttpClient.GentlemanSampleRequest("http://httpbin.org/post") // 模块引入第二种方式：配置go.mod文件 module src 并引入模块 src/模块名
-	GoHttpClient.GentlemanSendJsonBody("http://httpbin.org/post", map[string]string{"username": "liyinchi"})
+	// GoHttpClient.GentlemanSampleRequest("http://httpbin.org/post") // 模块引入第二种方式：配置go.mod文件 module src 并引入模块 src/模块名
+	// GoHttpClient.GentlemanSendJsonBody("http://httpbin.org/post", map[string]string{"username": "liyinchi"})
 	// GoHttpClient.GoNativeHttpClientGet()
-
+	GoHttpClient.GentlemanSenXMLBody()	// XML
+	GoHttpClient.QueryUrlParamRequest()// url query
 	// 字符串转json
 	// GoStructJSON.GoStruct2JSON()
 	GoStructJSON.GoJSON2SubNode()
