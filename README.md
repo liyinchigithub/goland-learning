@@ -324,3 +324,22 @@ go env | grep GOPROXY
 ```shell
 go fmt .
 ```
+
+* 6.
+
+```shell
+
+```
+
+* 7.
+
+```shell
+
+```
+
+
+* 8.
+
+```shell
+
+```

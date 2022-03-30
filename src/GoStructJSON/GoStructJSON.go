@@ -14,13 +14,13 @@ import (
 func GoStruct2JSON()  {
 	// 结构体
 	type Student struct {
-		Id   int	`json:"id"` // 如果变量打上了json标签，如：Name旁边的 `json:"name"` ，那么转化成的json key就用该标签“name”，否则取变量名作为key，如“Age”，“HIgh”。
-		Name string	`json:"name"`// 注意：如果定义为小写字母开头 私有属性不能被json包访问
+		Id   int	`json:"id"` // 如果变量打上了json标签，如：Name旁边的 `json:"name"` ，那么转化成的json key就用该标签“name”，否则取变量名作为key，如“Age”，“HIgh”。如果定义为小写字母开头 私有属性不能被json包访问
+		Name string	`json:"name"`// [注意]如果定义为小写字母开头 私有属性不能被json包访问
 		Age  int `json:"age"`	
 		Sno  string	`json:"son"`
 	}
 	
-	// 实例化结构体，相当于类的实例化
+	// 实例化一个数据结构，用于生成json字符串(相当于类的实例化)
 	var s = Student{
 		Id:   11,
 		Name: "小王",
@@ -30,8 +30,12 @@ func GoStruct2JSON()  {
 	fmt.Printf("%#v\n", s) //	GoStructJSON.Student{Id:11, Name:"小王", Age:10, Sno:"n201205"}
 	// struct转json字符串
 	jsonByte,_ := json.Marshal(s) 
+	//Marshal失败时err!=nil
+    // if err != nil {
+    //     fmt.Println("生成json字符串错误")
+    // }
 	// json转字符串
-	jsonStr := string(jsonByte)
+	jsonStr := string(jsonByte)// jsonByte是[]byte类型，转化成string类型便于查看
 	fmt.Println(jsonStr) //	{"id":11,"name":"小王","age":10,"son":"n201205"}
 	
 	
