@@ -102,7 +102,7 @@ func GoJSON2SubNode()  {
     }
 
     //指针变量
-    cla := new(Class)
+    cla := new(Class) // 实例化指针结构体
     cla.Name = "1班"
     cla.Grade = 3
     stu.Class=cla
@@ -117,4 +117,11 @@ func GoJSON2SubNode()  {
     //jsonStu是[]byte类型，转化成string类型便于查看
     fmt.Println(string(jsonStu))
 	// 输出：{"name":"张三","Age":18,"HIgh":true,"class":{"Name":"1班","Grade":3}}
+	/*
+	* 只要是可导出成员（变量首字母大写），都可以转成json。因成员变量sex是不可导出的，故无法转成json。
+	* 如果变量打上了json标签，如Name旁边的 `json:"name"` ，那么转化成的json key就用该标签“name”，否则取变量名作为key，如“Age”，“HIgh”。
+	* bool类型也是可以直接转换为json的value值。Channel， complex 以及函数不能被编码json字符串。当然，循环的数据结构也不行，它会导致marshal陷入死循环。
+	* 指针变量，编码时自动转换为它所指向的值，如cla变量。（当然，不传指针，Stu struct的成员Class如果换成Class struct类型，效果也是一模一样的。只不过指针更快，且能节省内存空间。）
+	* ：json编码成字符串后就是纯粹的字符串了
+	*/
 }
