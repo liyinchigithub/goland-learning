@@ -125,3 +125,47 @@ func GoJSON2SubNode()  {
 	* ：json编码成字符串后就是纯粹的字符串了
 	*/
 }
+
+/*
+	interface{}类型其实是个空接口，即没有方法的接口。
+	go的每一种类型都实现了该接口。
+	因此，任何其他类型的数据都可以赋值给interface{}类型
+*/ 
+func GoInterface(){
+	type Stu struct {
+		Name  interface{} `json:"name"`
+		Age   interface{}
+		HIgh  interface{}
+		sex   interface{}
+		Class interface{} `json:"class"`
+	}
+	
+	type Class struct {
+		Name  string
+		Grade int
+	}
+
+	//实例化一个数据结构，用于生成json字符串
+    stu := Stu{
+        Name: "张三",
+        Age:  18,
+        HIgh: true,
+        sex:  "男",
+    }
+
+    //指针变量
+    cla := new(Class)
+    cla.Name = "1班"
+    cla.Grade = 3
+    stu.Class=cla
+
+    //Marshal失败时err!=nil
+    jsonStu, err := json.Marshal(stu)
+    if err != nil {
+        fmt.Println("生成json字符串错误")
+    }
+
+    //jsonStu是[]byte类型，转化成string类型便于查看
+    fmt.Println(string(jsonStu)) //{"name":"张三","Age":18,"HIgh":true,"class":{"Name":"1班","Grade":3}}
+
+}

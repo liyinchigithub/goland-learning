@@ -21,6 +21,7 @@ func main() {
 	// 字符串转json
 	// GoStructJSON.GoStruct2JSON()
 	GoStructJSON.GoJSON2SubNode()
+	GoStructJSON.GoInterface()// interface
 	// 数据类型
 
 	// excel操作
