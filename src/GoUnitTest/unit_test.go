@@ -19,6 +19,8 @@ import (
 	[跳过测试]
 			可以调用 *T 和 *B 的 Skip 方法，跳过该测试或基准测试
 			t.Skip("skipping test in short mode.")
+	[日志]
+	单元测试调试使用 [t.log]，而不是fmt.Println()
 */
 
 func TestA(t *testing.T) {
