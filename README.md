@@ -327,12 +327,18 @@ go fmt .
 
 * 6.模块导入
 
---模块A
+--包A
+
 --文件a
-----模块B
+
+----包B
+
 ----文件b
 
-文件b引入文件a的函数
+在文件b中引入包a的函数
+
+<img width="826" alt="image" src="https://user-images.githubusercontent.com/19643260/161190715-4523ce85-10d9-4995-97af-a887ae361899.png">
+
 
 ```shell
 
