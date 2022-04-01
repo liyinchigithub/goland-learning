@@ -348,7 +348,7 @@ go fmt .
 
 * 7.单元测试testing 控制台调试输出
 
-testing使用t.log()而不是fmt.println()
+testing使用t.log() 也可以使用fmt.println()，但不能直接go test .  而是需要指定执行文件名
 
 ```shell
 package test
@@ -362,11 +362,11 @@ import (
 func TestGoHttpClientA(t *testing.T) {
 	api.GentlemanSampleRequest()
 	t.Log("测试中...string")
-	fmt.Println("测试中...string")// 不会再 控制台输出
+	fmt.Println("测试中...string")
 }
 
 /*
-	命令行执行：
+	命令行执行，运行指定文件名、文件中某个函数：
 	go test -v go_test.go
 	go test -v -run=TestGoHttpClientA go_test.go
 */
