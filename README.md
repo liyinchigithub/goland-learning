@@ -325,15 +325,45 @@ go env | grep GOPROXY
 go fmt .
 ```
 
-* 6.
+* 6.模块导入
+
+--模块A
+--文件a
+----模块B
+----文件b
+
+文件b引入文件a的函数
 
 ```shell
 
 ```
 
-* 7.
+
+
+* 7.单元测试testing 控制台调试输出
+
+testing使用t.log()而不是fmt.println()
 
 ```shell
+package test
+
+import (
+	"app/api"
+	"fmt"
+	"testing"
+)
+
+func TestGoHttpClientA(t *testing.T) {
+	api.GentlemanSampleRequest()
+	t.Log("测试中...string")
+	fmt.Println("测试中...string")// 不会再 控制台输出
+}
+
+/*
+	命令行执行：
+	go test -v go_test.go
+	go test -v -run=TestGoHttpClientA go_test.go
+*/
 
 ```
 
