@@ -373,6 +373,11 @@ func TestGoHttpClientA(t *testing.T) {
 
 ```
 
+或
+
+```shell
+sudo /usr/local/go/bin/go test -timeout 30s
+```
 
 * 8.
 
