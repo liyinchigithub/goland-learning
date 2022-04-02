@@ -94,6 +94,7 @@ func TestMathRandomE() {
 */
 func TestMathRandomF() {
 	math_rand.Seed(42) // Try changing this number!
+	// 数组
 	answers := []string{
 		"It is certain",
 		"It is decidedly so",
