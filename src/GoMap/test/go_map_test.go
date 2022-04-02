@@ -1,12 +1,13 @@
-package GoMap
+package test
 
 
 import(
 	"testing"
+	"src/GoMap"
 )
 
 func TestGoMap(t *testing.T)  {
 	// GoMapA()
-	GoMapB()
+	GoMap.GoMapB()
 	// GoMapC()
 }
