@@ -5,6 +5,10 @@ import (
 	"fmt"
 )
 
+/*
+	
+*/
+
 // 定义接口
 type Phone interface {
     // 接口函数

@@ -1,6 +1,7 @@
 # goland-learning
 
->https://www.runoob.com/go/go-tutorial.html
+[![goland](https://img.shields.io/badge/goland-1.17.7-green.svg)](https://github.com/golang/go) 
+
 
 ## 安装
 
@@ -384,3 +385,10 @@ sudo /usr/local/go/bin/go test -timeout 30s
 ```shell
 
 ```
+
+
+##  参考教程
+
+>https://www.runoob.com/go/go-tutorial.html
+
+>https://gfw.go101.org/article/101.html

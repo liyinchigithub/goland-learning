@@ -9,6 +9,11 @@ import (
     "github.com/gin-gonic/gin"
     _ "github.com/go-sql-driver/mysql"
 )
+
+ /*
+	[官方文档]
+	https://github.com/gin-gonic/gin
+ */
 func TestRESTfulAPI(t *testing.T) {
 	// 数据库配置
     db, err := sql.Open("mysql", "root:passapp@tcp(127.0.0.1:3306)/gotest")
