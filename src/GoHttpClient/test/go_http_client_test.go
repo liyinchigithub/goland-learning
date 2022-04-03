@@ -2,7 +2,7 @@ package test
 
 import (
 	"testing"
-	"src/GoHttpClient"
+	GoHttpClient "src/GoHttpClient"
 )
 
 func TestGoHttpClientA(t *testing.T) {

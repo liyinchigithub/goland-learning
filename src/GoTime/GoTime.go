@@ -12,9 +12,9 @@ func GoTimeA() {
 	// unixTime: 1587888473
 	unixTime := 1587894706
 	timeObj := time.Unix(int64(unixTime), 0)
-	fmt.Println(timeObj)
+	fmt.Println(timeObj)//  2020-04-26 17:36:04.000000000 +0800 CST m=+0.000000000
 	var str = timeObj.Format("2006-01-02 15:04:05")
-	fmt.Println(str) //2020-04-26 17:51:46
+	fmt.Println(str) //  2020-04-26 17:36:04  数据类型是time.Time
 }
 
 /*
@@ -33,19 +33,20 @@ func GoTimeA() {
 
 */
 func GoTimeB() {
-	// timeObj := time.Now()
-	// var str = timeObj.Format("2006-01-02 03:04:05")
-	// fmt.Println(str) //2020-04-26 05:44:24
 
-	//12小时制
-	// timeObj := time.Now()
-	// var str = timeObj.Format("2006/01/02 03:04:05")
-	// fmt.Println(str) //2020/04/26 05:44:47
+	timeObj1 := time.Now()
+	var str1 = timeObj1.Format("2006-01-02 03:04:05")
+	fmt.Println(str1) //2020-04-26 05:44:24
 
-	// 24小时制
-	timeObj := time.Now()
-	var str = timeObj.Format("2006/01/02 15:04:05")
-	fmt.Println(str) // 2020/04/26 17:48:53
+	// [12小时制]
+	timeObj2 := time.Now()
+	var str2 = timeObj2.Format("2006/01/02 03:04:05")
+	fmt.Println(str2) //2020/04/26 05:44:47
+
+	// [24小时制]
+	timeObj3 := time.Now()
+	var str3 = timeObj3.Format("2006/01/02 15:04:05")
+	fmt.Println(str3) //	2020/04/26 15:44:47
 }
 
 /*
@@ -55,14 +56,13 @@ func GoTimeB() {
 func GoTimeC() {
 	timeObj := time.Now()
 	fmt.Println(timeObj) //2020-04-26 17:32:25.9639049 +0800 CST m=+0.004000301
-
 	// 2020-04-26 17:32:25
-	year := timeObj.Year()
-	month := timeObj.Month()
-	day := timeObj.Day()
-	hour := timeObj.Hour()
-	minute := timeObj.Minute()
-	second := timeObj.Second()
+	year := timeObj.Year()	//年
+	month := timeObj.Month()//月
+	day := timeObj.Day()//日
+	hour := timeObj.Hour()//时
+	minute := timeObj.Minute()//分
+	second := timeObj.Second()//秒
 	// fmt.Printf("%d-%d-%d %d:%d:%d", year, month, day, hour, minute, second) //2020-4-26 17:35:07
 
 	fmt.Printf("%d-%02d-%02d %02d:%02d:%02d", year, month, day, hour, minute, second) //2020-04-26 17:36:04

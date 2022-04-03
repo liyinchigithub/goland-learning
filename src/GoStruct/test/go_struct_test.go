@@ -2,7 +2,7 @@ package GoStruct
 
 import (
 	"testing"
-	"GoStruct" // 自定义封装模块放入/usr/local/go/src/下
+	GoStruct "src/GoStruct" // 自定义封装模块放入/usr/local/go/src/下
 )
 
 func TestGoFunction(t *testing.T) {

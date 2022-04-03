@@ -1,10 +1,11 @@
 package GoJson
 
 /*
+	[读取json文件]
 	首先要能读取文件内容，读取文件内容可以使用os.Open()打开一个文件，
 	然后再使用ioutil.ReadAll()读取文件的内容。
-	这里要注意一下，ioutil.ReadAll()读取到的是字节，也就是[]bytes数据类型。
-	如果你需要把字节转换成字符可以在使用string()函数转成字符。
+	[注意]ioutil.ReadAll()读取到的是字节，也就是[]bytes数据类型。
+	如果你需要把[字节]转换成[字符]可以在使用string()函数转成字符。
 	如这个例子，读取user.json文件并打印出内容
 */
 
@@ -17,13 +18,6 @@ import (
   )
   
  
-/*
-	首先要能读取文件内容，读取文件内容可以使用os.Open()打开一个文件，
-	然后再使用ioutil.ReadAll()读取文件的内容。
-	[注意]ioutil.ReadAll()读取到的是字节，也就是[]bytes数据类型。
-	如果你需要把[字节]转换成[字符]可以在使用string()函数转成字符。
-	如这个例子，读取user.json文件并打印出内容
-*/
 
 // 读取json
 func JsonReadFile()  {
@@ -51,7 +45,7 @@ func JsonWriteFile()  {
 		Name    string
 		age     int
 		Sex     bool
-		Hobbies []string
+		Hobbies []string	// 数组
 	}
 	// 实例化结构体对象，并初始化
 	personInfo := []PersonInfo{

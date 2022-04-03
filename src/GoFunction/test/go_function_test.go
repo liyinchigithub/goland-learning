@@ -1,17 +1,18 @@
-package GoFor
+package GoFunction
 
-import(
+import (
 	"testing"
+	GoFunction "src/GoFunction"
 )
 
-func TestGoFor(t *testing.T){
-	// GoForA()
-	// GoForB()
-	// GoForC()
-	// GoForD()
-	GoForE()
-	// GoForF()
-	// GoForG()
+func TestGoFunction(t *testing.T){
+	// GoFunctionA()
+	// GoFunctionB()
+	// GoFunctionC()
+	// GoFunctionD()
+	// GoFunctionE()
+	// GoFunctionF()
+	GoFunction.GoFunctionG()
 }
 
 /* 
@@ -23,4 +24,7 @@ func TestGoFor(t *testing.T){
 	sudo /usr/local/go/bin/go test -timeout 30s 文件名.go
 	[单元测试文件名以_test结尾]
 	[函数大写Test开头]
+
+	cd test
+	go test -v go_function_test.go
 */

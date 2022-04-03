@@ -14,8 +14,9 @@ import (
 //判断字符串s是否包含子串
 func GoStringsContains() {
 	var s string = "hello go"
-	r := strings.Contains(s, "go") // true
-	fmt.Println(r)                 //true
+	// 判断字符串s是否包含子串substr
+	r := strings.Contains(s, "go") //	true
+	fmt.Println(r)                 // true
 }
 
 // strings.Split() 字符串分割成切片
@@ -35,12 +36,12 @@ func GoStringsJoin() {
 
 //将一系列字符串连接为一个字符串，之间用sep来分隔
 func GoStringsJoinArray() {
-	var s1 []string = []string{"1", "2", "3", "4"}
+	s1 := []string{"1", "2", "3", "4"}
 	s2 := strings.Join(s1, ",") //把切片连接成字符串
 	fmt.Println(s2)             //1,2,3,4
 }
 
-//子串sep在字符串s中[第一次出现的位置]，存在返回0，不存在则返回-1
+// 子串sep在字符串s中[第一次出现的位置]，存在返回0，不存在则返回-1
 func GoStringsIndex() {
 	var s string = "hello go"
 	n1 := strings.Index(s, "go")
@@ -94,6 +95,14 @@ func formatStringA() {
 	var url = "Code=%d&endDate=%s"                    // %d 表示整型数字，%s 表示字符串
 	var result = fmt.Sprintf(url, stockcode, enddate) // 输出：Code=123&endDate=2020-12-31
 	fmt.Println(result)
+	/*
+	%d 十进制
+	%b 二进制
+	%x 十六禁止
+	%o 八进制 
+	%s  字符串 
+	%v  原值
+	*/
 }
 
 func formatStringB() {
@@ -129,7 +138,7 @@ func StringRune()  {
 
 func StringByte()  {
 	var s = "big"
-	var byteStr = []byte(s)//byte类型
+	var byteStr = []byte(s)// byte类型
 	byteStr[0] = 's'
 	fmt.Println(string(byteStr)) //sig
 	

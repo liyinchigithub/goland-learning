@@ -9,7 +9,7 @@ Go 语言的 For 循环有 3 种形式，只有其中的一种使用分号
 [post] 一般为赋值表达式，给控制变量增量或减量。可省略
 */
 
-// 和 C 语言的 for 一样：for init; condition; post { }
+// 第一种形式：和 C 语言的 for 一样：for init; condition; post { }
 func GoForA(){
 		j:=10
 		for i := 0; i < j; i++ {
@@ -17,7 +17,7 @@ func GoForA(){
 		}
 		
 }
-// 和 C 的 while 一样：for condition { }   不写初始化和自增
+// 第二种形式：和 C 的 while 一样：for condition { }   不写初始化和自增
 func GoForB(){
 		var i,j int=0,10
 		for i<j{
@@ -27,8 +27,7 @@ func GoForB(){
 }
 
 
-// init 和 post 参数是可选的，我们可以直接省略它，类似 While 语句。
-// 和 C 的 for(;;) 一样：for { }
+// 第三种形式：init 和 post 参数是可选的，我们可以直接省略它，类似 While 语句。和 C 的 for(;;) 一样：for { }
 func GoForC(){
 	i:=0
 	for {
@@ -40,9 +39,10 @@ func GoForC(){
 		}
 	}
 }
-// For-each range 循环 这种格式的循环可以对[字符串]、[数组]、[切片 slice]、[map]等进行迭代输出元素for 循环的 
+// 第四种形式：For-each range 循环 这种格式的循环可以对[字符串]、[数组]、[切片 slice]、[map]等进行迭代输出元素for 循环的 
 func GoForD(){
 	arr:=[]string{"a","b","c"}
+	// i是索引下标，如果不想使用可以使用下划线 _ 即匿名变量接收
 	for i,j:= range arr {
 		fmt.Println(i,j) // i是索引下标，j表示每个数组的元素
 	}
@@ -90,7 +90,7 @@ func GoForG(){
     }
 }
 
-// break 跳出整个循环
+// [break] 跳出整个循环
 func GoForH(){
 	/* 定义局部变量 */
 	var a int = 10
@@ -106,7 +106,7 @@ func GoForH(){
 	}
 }
 
-// continue 仅跳过本次，执行下一个循环
+// [continue] 仅跳过本次，执行下一个循环
 func GoForI(){
 	/* 定义局部变量 */
 	var a int = 10

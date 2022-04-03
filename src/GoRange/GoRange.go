@@ -5,12 +5,13 @@ import (
 )
 
 /*
-	Go 语言中 range 关键字用于 for 循环中[迭代数组(array)]、[切片(slice)]、[通道(channel)]或[集合(map)]的元素。
-	在数组和切片中它返回元素的索引和索引对应的值，在集合中返回 key-value 对。
+	[遍历]
+	range 关键字用于 for 循环中[迭代数组(array)]、[切片(slice)]、[通道(channel)]或[集合(map)]的元素。
+	在数组 和 切片中它返回元素的[索引]和[索引对应的值]，在集合中返回 key-value 对。遍历map的时候返回的是key-value对的key和value，不用到索引。即只有一个value
 */
 
 /*
-	遍历切片（动态数组）
+	[遍历切片（动态数组）]
 	第一个参数 匿名变量
 	第二个参数 索引值
 */ 
@@ -27,7 +28,7 @@ func GoRangeA()  {
 }
 
 /*
-	遍历数组
+	[遍历数组]
 	第一个参数 索引下标
 	第二个参数 索引值
 */ 
@@ -41,12 +42,12 @@ func GoRangeB()  {
 }
 
 /*
-	遍历map集合
+	[遍历map集合]
 	第一个参数 map key
 	第二个参数 map value
 */ 
 func GoRangeC()  {
-	//range也可以用在map的键值对上。
+	// 声明一个map
     kvs := map[string]string{"a": "apple", "b": "banana"}
     for k, v := range kvs {
         fmt.Printf("%s -> %s\n", k, v)
@@ -59,7 +60,7 @@ func GoRangeC()  {
 }
 
 /*
-	遍历字符串 
+	[遍历字符串] 
 	第一个参数 字符值
 	第二个参数 unicode字符串
 */

@@ -3,7 +3,7 @@ package test
 
 import(
 	"testing"
-	"src/GoMap"
+	GoMap "src/GoMap"
 )
 
 func TestGoMap(t *testing.T)  {

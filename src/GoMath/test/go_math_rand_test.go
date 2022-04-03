@@ -1,7 +1,7 @@
 package test
 
 import (
-	"src/GoMath"
+	GoMath "src/GoMath"
 	"testing"
 )
 

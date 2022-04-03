@@ -2,10 +2,11 @@ package GoJson
 
 import (
 	"testing"
+	GoJson "src/GoJson"
   )
 func Test(t *testing.T) {
-	JsonReadFile()
+	GoJson.JsonReadFile()
 	// JsonReadFile2()
-	JsonWriteFile()
+	GoJson.JsonWriteFile()
 	
   }

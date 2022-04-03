@@ -1,14 +1,17 @@
 package GoStrings
 
-import "testing"
+import (
+	"testing"
+	GoStrings "src/GoStrings"
+)
 
 
 func TestGoStrings(t *testing.T){
-	// GoStringsContains() 
-	// GoStringsSplit()
-	// GoStringsJoin()
-	// GoStringsJoinArray()
-	StringRune()
+	// GoStrings.GoStringsContains() 
+	// GoStrings.GoStringsSplit()
+	// GoStrings.GoStringsJoin()
+	// GoStrings.GoStringsJoinArray()
+	GoStrings.StringRune()
 	t.Log("done")
 }
 

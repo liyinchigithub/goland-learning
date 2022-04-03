@@ -4,7 +4,8 @@ import(
 	"fmt"
 )
 /*
-	Go 语言切片是[对数组的抽象]。
+	[切片]
+	Go 语言中[切片]是[对数组的抽象]。
 	Go 数组的长度不可改变，在特定场景中这样的集合就不太适用，Go 中提供了一种灵活，功能强悍的内置类型切片("动态数组")，
 	与数组相比切片的长度是不固定的，可以追加元素，在追加时可能使切片的容量增大。
 
@@ -19,19 +20,19 @@ import(
 				make([]Typt, length, capacity)
 				这里 len 是数组的长度并且也是切片的初始长度
 	[切片初始化]
-	s :=[] int {1,2,3 } 
+		s :=[] int {1,2,3 } 
 	直接初始化切片，[] 表示是切片类型，{1,2,3} 初始化值依次是 1,2,3，其 cap=len=3。
-	s := arr[:] 
+		s := arr[:] 
 	初始化切片 s，是数组 arr 的引用
-	s := arr[startIndex:endIndex] 
+		s := arr[startIndex:endIndex] 
 	将 arr 中从下标 startIndex 到 endIndex-1 下的元素创建为一个新的切片
-	s := arr[startIndex:] 
+		s := arr[startIndex:] 
 	默认 endIndex 时将表示一直到arr的最后一个元素。
-	s := arr[:endIndex] 
+		s := arr[:endIndex] 
 	默认 startIndex 时将表示从 arr 的第一个元素开始。
-	s1 := s[startIndex:endIndex] 
+		s1 := s[startIndex:endIndex] 
 	通过切片 s 初始化切片 s1
-	s :=make([]int,len,cap) 
+		s :=make([]int,len,cap) 
 	通过内置函数 make() 初始化切片s，[]int 标识为其元素类型为 int 的切片。
 	
 */
@@ -46,13 +47,13 @@ func GoSliceA()  {
 */
 
 func GoSliceB()  {
-	var numbers = make([]int,3,5)
-	printSlice(numbers)
+	var numbers = make([]int,3,5)	// 切片长度为3，容量为5
+	printSlice(numbers)// len=3 cap=5 slice=[0 0 0]
 	
 }
 
 func printSlice(x []int){
-	fmt.Printf("len=%d cap=%d slice=%v\n",len(x),cap(x),x)
+	fmt.Printf("len=%d cap=%d slice=%v\n",len(x),cap(x),x)// len=3 cap=5 slice=[0 0 0]
 }
 
 /*
@@ -61,8 +62,8 @@ func printSlice(x []int){
 */
 func GoSliceC()  {
 	// 空切片 未初始化切片为空
-	var numbers []int
-	printSlice(numbers)
+	var numbers []int // numbers == nil
+	printSlice(numbers)// len=0 cap=0 slice=[]
 	if(numbers == nil){
 		fmt.Printf("切片是空的")
 	}
@@ -73,31 +74,31 @@ func GoSliceC()  {
 */
 func GoSliceD()  {
 	/* 创建切片 */
-	numbers := []int{0,1,2,3,4,5,6,7,8}  
-	printSlice(numbers)
+	numbers := []int{0,1,2,3,4,5,6,7,8}  // numbers == [0 1 2 3 4 5 6 7 8]
+	printSlice(numbers)// len=9 cap=9 slice=[0 1 2 3 4 5 6 7 8]
 
 	/* 打印原始切片 */
-	fmt.Println("numbers ==", numbers)
+	fmt.Println("numbers ==", numbers)// numbers == [0 1 2 3 4 5 6 7 8]
 
 	/* 打印子切片从索引1(包含) 到索引4(不包含)*/
-	fmt.Println("numbers[1:4] ==", numbers[1:4])
+	fmt.Println("numbers[1:4] ==", numbers[1:4])// numbers[1:4] == [1 2 3]
 
 	/* 默认下限为 0*/
-	fmt.Println("numbers[:3] ==", numbers[:3])
+	fmt.Println("numbers[:3] ==", numbers[:3])// numbers[:3] == [0 1 2]
 
 	/* 默认上限为 len(s)*/
-	fmt.Println("numbers[4:] ==", numbers[4:])
+	fmt.Println("numbers[4:] ==", numbers[4:])// numbers[4:] == [4 5 6 7 8]
 
-	numbers1 := make([]int,0,5)
+	numbers1 := make([]int,0,5)// numbers1 == []
 	printSlice(numbers1)
 
 	/* 打印子切片从索引  0(包含) 到索引 2(不包含) */
 	number2 := numbers[:2]
-	printSlice(number2)
+	printSlice(number2)// len=2 cap=5 slice=[0 1]
 
 	/* 打印子切片从索引 2(包含) 到索引 5(不包含) */
 	number3 := numbers[2:5]
-	printSlice(number3)
+	printSlice(number3)//  len=3 cap=5 slice=[2 3 4]
 }
 
 /*
@@ -106,25 +107,25 @@ func GoSliceD()  {
 	下面的代码描述了从拷贝切片的 copy 方法和向切片追加新元素的 append 方法。
 */
 func GoSliceE()  {
-	var numbers []int
-	printSlice(numbers)
+	var numbers []int// numbers == nil
+	printSlice(numbers)// len=0 cap=0 slice=[]
  
 	/* 允许追加空切片 */
-	numbers = append(numbers, 0)
-	printSlice(numbers)
+	numbers = append(numbers, 0)// numbers == [0]
+	printSlice(numbers)// len=1 cap=1 slice=[0]
  
 	/* 向切片添加一个元素 */
-	numbers = append(numbers, 1)
-	printSlice(numbers)
+	numbers = append(numbers, 1)// numbers == [0 1]
+	printSlice(numbers)// len=2 cap=2 slice=[0 1]
  
 	/* 同时添加多个元素 */
-	numbers = append(numbers, 2,3,4)
-	printSlice(numbers)
+	numbers = append(numbers, 2,3,4)// numbers == [0 1 2 3 4]
+	printSlice(numbers)// len=5 cap=6 slice=[0 1 2 3 4]
  
 	/* 创建切片 numbers1 是之前切片的两倍容量*/
-	numbers1 := make([]int, len(numbers), (cap(numbers))*2)
+	numbers1 := make([]int, len(numbers), (cap(numbers))*2)// numbers1 == [0 1 2 3 4 0 0 0 0]
  
 	/* 拷贝 numbers 的内容到 numbers1 */
-	copy(numbers1,numbers)
-	printSlice(numbers1)  
+	copy(numbers1,numbers)// numbers1 == [0 1 2 3 4 0 0 0 0]
+	printSlice(numbers1)  // len=5 cap=8 slice=[0 1 2 3 4 0 0 0]
 }

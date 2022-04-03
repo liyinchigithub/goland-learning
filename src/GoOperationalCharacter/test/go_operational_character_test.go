@@ -2,15 +2,16 @@ package GoOperationalCharacter
 
 import (
 	"testing"
+	GoOperationalCharacter "src/GoOperationalCharacter"
 )
  // 运算符
 func TestGoOperationalCharacterA(t *testing.T)  {
-	// GoOperationalCharacterA()
-	// GoOperationalCharacterB()
-	// GoOperationalCharacterC()
-	// GoOperationalCharacterD()
-	// GoOperationalCharacterE()
-	GoOperationalCharacterF()
+	// GoOperationalCharacter.GoOperationalCharacterA()
+	// GoOperationalCharacter.GoOperationalCharacterB()
+	// GoOperationalCharacter.GoOperationalCharacterC()
+	// GoOperationalCharacter.GoOperationalCharacterD()
+	// GoOperationalCharacter.GoOperationalCharacterE()
+	GoOperationalCharacter.GoOperationalCharacterF()
 }
 
 /*

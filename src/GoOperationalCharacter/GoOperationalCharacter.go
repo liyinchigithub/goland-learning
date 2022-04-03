@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 /*
-	算数运算符 + - * / % ++ --
+	[算数运算符] + - * / % ++ --
 */
 func GoOperationalCharacterA()  {
 	var a int = 21
