@@ -11,16 +11,24 @@ import (
 
 // 定义接口
 type Phone interface {
-    // 接口函数
+    // 接口中的函数
     call()
 }
 
 // 定义结构体
 type NokiaPhone struct {
+	name string
+	num int
 }
 // 结构体实现接口的方法（相当于java类实现接口方法）
 func (nokiaPhone NokiaPhone) call() {
     fmt.Println("I am Nokia, I can call you!")
+	nokiaPhone.name = "nokia"
+	nokiaPhone.num = 123
+    fmt.Printf("nokiaPhone.name:%s",nokiaPhone.name)
+    fmt.Printf("nokiaPhone.name:%d",nokiaPhone.num)
+	
+	
 }
 
 // 定义结构体
@@ -33,20 +41,17 @@ func (iPhone IPhone) call() {
 
 
 func Test(t *testing.T)  {
-	// 定义一个接口类型变量
-	var phone Phone
-	// 结构体实例化
-	var a =NokiaPhone{}
-	a.call()
+	var phone Phone// 定义一个接口类型变量
+	var a =NokiaPhone{}// 实例化结构体
+	a.call()// I am Nokia, I can call you!
 
-	phone = new(NokiaPhone)// 结构体实例化对象，接口类型变了可以存放实现该接口方法的实例对象
-	phone.call()
+	phone = new(NokiaPhone)// 实例化结构体
+	phone.call()// I am Nokia, I can call you!
 	
-	// 结构体实例化
-	var b =IPhone{}
-	b.call()
+	var b =IPhone{}// 实例化结构体
+	b.call()// I am iPhone, I can call you!
 
-	phone = new(IPhone)// 结构体实例化对象，接口类型变了可以存放实现该接口方法的实例对象
+	phone = new(IPhone)// 结构体实例化对象，接口类型变量可以存放实现该接口方法的实例对象
 	phone.call()
 }
 
@@ -86,12 +91,12 @@ func (b B_struct)AMove()  {
 
 // 单元测试
 func TestInterface(t *testing.T)  {
-	// 实例化结构体对象
-	C:=A_struct{name:"李四",age:12}
-	fmt.Println(C.Asay("王五",22))
+
+	C:=A_struct{name:"李四",age:12}// 实例化结构体
+	fmt.Println(C.Asay("王五",22))// 结构体实现接口方法
 	
-	B:=B_struct{}
-	B.AMove()
+	B:=B_struct{}// 实例化结构体
+	B.AMove()// 结构体实现接口方法
 
 }
 
@@ -100,14 +105,17 @@ func TestInterface(t *testing.T)  {
 	接口继承和重写
 */ 
 
+// 定义结构体 
 type Employee struct {
     Name string
 }
 
+// 定义结构体的方法
 func (e Employee) Work() {
     println(e.Name, "work")
 }
 
+// 定义结构体 
 type Developer struct {
     Employee // 无名称字段类型实现继承
     Projects []string
@@ -118,16 +126,18 @@ func (d Developer) Work() {
     println(d.Name, "work on projects", d.Projects)
 }
 
+//  接口继承
 type Worker interface {
     Work()
 }
 
-// 定义函数
+//	定义函数
 func workerWork(worker Worker) {
     worker.Work()
 }
 
-func TestOveri(t *testing.T) {
+//  单元测试
+func TestOver(t *testing.T) {
     wongoo := Developer{
         Employee: Employee{Name: "wongoo"},
         Projects: []string{"gateway", "message"},// 切片
