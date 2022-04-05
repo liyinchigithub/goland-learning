@@ -11,18 +11,21 @@ import (
 func TestRun(t *testing.T) {
 	//创建数据对象 当前并未创建实际连接
 	db, err := sql.Open("mysql", "root:lyc123456@tcp(127.0.0.1:3306)/test?charset=utf8") // 数据库配置
+	// 判断是否连接成功
 	if err != nil {
 		panic(err)
 	}
-	//检查数据库是否可用
+	// 检查数据库是否可用
 	err = db.Ping()
+	// 判断是否连接成功
 	if err != nil {
 		panic(err)
 	}
 	// 执行 顺序
 	// t.Run("TestMySQLCreate",TestMySQLCreate)
 	// t.Run("TestMysqlInsert", TestMysqlInsert)
-	t.Run("TestMysqlSelect", TestMysqlSelect)
+	// t.Run("TestMysqlSelectQuery", TestMysqlSelectQuery)
+	t.Run("TestMysqlSelectPrepare", TestMysqlSelectPrepare)
 	// t.Run("TestMysqlUpdate",TestMysqlUpdate)
 }
 
@@ -64,7 +67,7 @@ func TestMySQLCreate(t *testing.T) {
 /*
 	查询数据
 */
-func TestMysqlSelect(t *testing.T) {
+func TestMysqlSelectQuery(t *testing.T) {
 	db, err := sql.Open("mysql", "root:lyc123456@tcp(127.0.0.1:3306)/test?charset=utf8") // 数据库配置
 	// 判断是否连接成功
 	if err != nil {
@@ -73,19 +76,22 @@ func TestMysqlSelect(t *testing.T) {
 	// 关闭数据库
 	defer db.Close()
 	// query
-	rows, err := db.Query("select * from person order by id")
+	rows, err := db.Query("select * from person order by id")// 执行语句且无返回，调用完后会自动释放连接。
+	// 判断是否执行成功
 	if err != nil {
 		log.Println("db query error , " + err.Error())
 	} else {
 		log.Println("db query success")
+		// 循环遍历结果集
 		var (
-			id       int32
-			first_name     string
-			last_name     string
-			birthday  string
+			id         int32
+			first_name string
+			last_name  string
+			birthday   string
 		)
+		// 循环读取数据
 		for rows.Next() {
-			err = rows.Scan(&id, &first_name,&last_name ,&birthday)
+			err = rows.Scan(&id, &first_name, &last_name, &birthday)
 			if err != nil {
 				log.Println("db scan error , " + err.Error())
 			} else {
@@ -93,23 +99,37 @@ func TestMysqlSelect(t *testing.T) {
 			}
 		}
 	}
-	// // Prepare
-	// stmt, err := db.Prepare("SELECT * FROM person;")
-	// //	判断是否创建成功
-	// if err != nil {
-	// 	log.Println(err.Error())
-	// }
-	// //  执行查询
-	// _, err = stmt.Exec() // 执行语句且无返回，调用完后会自动释放连接。
+	// 判断是否执行成功
+	if err != nil {
+		log.Print(err.Error())
+	} else {
+		log.Println("Person Table successfully migrated....")
+	}
+}
+func TestMysqlSelectPrepare(t *testing.T) {
+	db, err := sql.Open("mysql", "root:lyc123456@tcp(127.0.0.1:3306)/test?charset=utf8") // 数据库配置
+	// 判断是否连接成功
+	if err != nil {
+		log.Print(err.Error())
+	}
+	// 关闭数据库
+	defer db.Close()
+	// Prepare
+	stmt, err := db.Prepare("SELECT * FROM person;")// 执行语句且无返回，调用完后会自动释放连接。
+	//	判断是否创建成功
+	if err != nil {
+		log.Println(err.Error())
+	}
+	//  执行查询
+	_, err = stmt.Exec() // 执行语句且无返回，调用完后会自动释放连接。
 
 	// 判断是否执行成功
 	if err != nil {
 		log.Print(err.Error())
 	} else {
 		log.Println("Person Table successfully migrated....")
-		// log.Println("stmt:", stmt) // stmt: &{0xc00007fad0 SELECT * FROM person; <nil> {{0 0} 0 0 0 0} <nil> 0xc00002e8c0 <nil> {0 0} false [{0xc0001321b0 0xc00002e8c0}] 0}
+		log.Println("stmt:", stmt) // stmt: &{0xc00007fad0 SELECT * FROM person; <nil> {{0 0} 0 0 0 0} <nil> 0xc00002e8c0 <nil> {0 0} false [{0xc0001321b0 0xc00002e8c0}] 0}
 	}
-
 }
 
 /*

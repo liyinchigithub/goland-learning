@@ -1,4 +1,4 @@
-package GoPointer
+package test
 
 import (
 	"testing"
@@ -8,6 +8,7 @@ import (
 func TestGoPointer(t *testing.T){
 	t.Log("指针变量和指针地址:")
 	GoPointer.GoPointerB()
+	GoPointer.GoPointerExchange()
 }
 
 /*

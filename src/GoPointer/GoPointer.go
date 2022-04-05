@@ -1,7 +1,8 @@
 package GoPointer
 
 import (
-	"fmt"
+	// "fmt"
+	"log"
 )
 
 func GoPointerA()  {
@@ -16,14 +17,14 @@ func GoPointerA()  {
 	var v string
 	ptr := &v    // v 的类型为 T
 	// 其中 v 代表被取地址的变量，变量 v 的地址使用变量 ptr 进行接收，ptr 的类型为*T，称做T的指针类型，*代表指针。
-	fmt.Println(ptr)
+	log.Println(ptr)
 	// 指针地址，[常用于]作为引用参数传递给函数 定义函数形参为指针类型即*string 调用函数作为入参时传递指针类型即&v
 }
 
 func GoPointerB()  {
 	var cat int = 1
     var str string = "banana"
-    fmt.Printf("%p %p", &cat, &str) // 使用 fmt.Printf 的动词[%p]打印 cat 和 str 变量的[内存地址]，指针的值是带有0x十六进制前缀的一组数据。
+    log.Printf("%p %p\n", &cat, &str) // 使用 fmt.Printf 的动词[%p]打印 cat 和 str 变量的[内存地址]，指针的值是带有0x十六进制前缀的一组数据。
 	// 输出0xc0000161a8 0xc000054530
 }
 
@@ -33,13 +34,29 @@ func GoPointerC()  {
     // 对字符串取地址, ptr类型为*string
     ptr := &house
     // 打印ptr的类型
-    fmt.Printf("ptr type: %T\n", ptr)
-    // 打印ptr的指针地址
-    fmt.Printf("address: %p\n", ptr)
+    log.Printf("ptr type: %T\n", ptr)
+    // 打印ptr的指针地址，使用%p
+    log.Printf("address: %p\n", ptr)
     // 对指针进行取值操作
     value := *ptr
     // 取值后的类型
-    fmt.Printf("value type: %T\n", value)
+    log.Printf("value type: %T\n", value)
     // 指针取值后就是指向变量的值
-    fmt.Printf("value: %s\n", value)
+    log.Printf("value: %s\n", value)
+}
+
+// 入参是变量的指针类型
+func Exchangge(a,b *int)  {
+	t:=*a
+	*a=*b
+	*b=t
+}
+	
+// 指针变量交换值
+func GoPointerExchange()  {
+	var a,b =1,2
+	Exchangge(&a,&b)
+	log.Printf("a=%d,b=%d\n",a,b)
+	log.Printf("a=%p,b=%p\n",&a,&b)
+
 }
