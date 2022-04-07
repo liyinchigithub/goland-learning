@@ -223,11 +223,11 @@ func TestMysqlUpdate(t *testing.T) {
 	插入数据
 */
 func TestMysqlInsert(t *testing.T) {
-	insert("INSERT INTO person (first_name, last_name, birthday) VALUES ('James', 'Bond', 'aaaa');")
+	insert()
 }
 
 //insert 插入数据表
-func insert(query string) int64 {
+func insert() int64 {
 	db, err := sql.Open("mysql", "root:lyc123456@tcp(127.0.0.1:3306)/test?charset=utf8") // 数据库配置
 	// 判断是否连接成功
 	if err != nil {
@@ -237,18 +237,18 @@ func insert(query string) int64 {
 	defer db.Close()
 
 	//执行语句获取结果集
-	result, err := db.Exec(query)
+	result, err := db.Exec("INSERT INTO person (first_name, last_name, birthday) VALUES (?,?,?);", "James", "Bond", "aaaa")
 	if err != nil {
 		log.Fatal(err)
 	}
-	// 获取插入的主键
+	// 获取新插入数据的id
 	last_insert_id, err := result.LastInsertId()
 	// 判断是否执行成功
 	if err != nil {
 		log.Fatal(err)
 	}
 	// 返回插入的主键
-	log.Println(last_insert_id)
+	log.Println("last_insert_id:", last_insert_id)
 	// 返回影响的行数
 	return last_insert_id
 }
@@ -264,5 +264,16 @@ func TestMysqlDelete(t *testing.T) {
 	}
 	// 关闭数据库
 	defer db.Close()
+
+	ret, err := db.Exec("DELETE FROM person WHERE id = ?", 1)
+	if err != nil {
+		log.Println(err)
+	}
+
+	n, err := ret.RowsAffected() // 获取影响的行数
+	if err != nil {
+		log.Println(err)
+	}
+	log.Printf("delete success，affected rows:%d\n", n)
 
 }
