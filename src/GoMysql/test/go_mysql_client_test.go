@@ -222,6 +222,9 @@ func TestMysqlUpdate(t *testing.T) {
 		log.Print(err.Error())
 	}
 	n, err := ret.RowsAffected() // 返回受影响的行数
+	if err != nil {
+		log.Print(err.Error())
+	}
 	log.Printf("update sucess  , affected rows:%d\n", n)
 }
 
