@@ -217,6 +217,12 @@ func TestMysqlUpdate(t *testing.T) {
 	// 关闭数据库
 	defer db.Close()
 
+	ret, err := db.Exec("update person set first_name='张三' where id=1")
+	if err != nil {
+		log.Print(err.Error())
+	}
+	n, err := ret.RowsAffected() // 返回受影响的行数
+	log.Printf("update sucess  , affected rows:%d\n", n)
 }
 
 /*
