@@ -188,13 +188,13 @@ func TestMysqlSelectPrepare(t *testing.T) {
 	// 关闭数据库
 	defer db.Close()
 	// Prepare
-	stmt, err := db.Prepare("SELECT * FROM person;") // 执行语句且无返回，调用完后会自动释放连接。
+	stmt, err := db.Prepare("SELECT * FROM person where id=?;") // 执行语句且无返回，调用完后会自动释放连接。
 	//	判断是否创建成功
 	if err != nil {
 		log.Println(err.Error())
 	}
 	//  执行查询
-	_, err = stmt.Exec() // 执行语句且无返回，调用完后会自动释放连接。
+	_, err = stmt.Exec(1) // 执行语句且无返回，调用完后会自动释放连接。
 
 	// 判断是否执行成功
 	if err != nil {
@@ -203,6 +203,40 @@ func TestMysqlSelectPrepare(t *testing.T) {
 		log.Println("Person Table successfully migrated....")
 		log.Println("stmt:", stmt) // stmt: &{0xc00007fad0 SELECT * FROM person; <nil> {{0 0} 0 0 0 0} <nil> 0xc00002e8c0 <nil> {0 0} false [{0xc0001321b0 0xc00002e8c0}] 0}
 	}
+}
+func TestMysqlSelectPrepareQuery(t *testing.T) {
+	type user struct {
+		id         int32
+		first_name string
+		last_name  string
+		birthday   string
+	}
+	var u user
+	smtm, err := sql.Open("mysql", "root:lyc123456@tcp(127.0.0.1:3306)/test?charset=utf8") // 数据库配置
+	// 判断是否连接成功
+	if err != nil {
+		log.Print(err.Error())
+	}
+	// 关闭数据库
+	defer smtm.Close()
+	// Prepare
+	stmt, err := smtm.Prepare("SELECT * FROM person where id=?;") // 执行语句且无返回，调用完后会自动释放连接。
+	//	判断是否创建成功
+	if err != nil {
+		log.Println(err.Error())
+	}
+	//  执行查询
+	rows, err := stmt.Query(2) // 执行语句且无返回，调用完后会自动释放连接。
+	defer rows.Close()
+	for rows.Next() {
+		err := rows.Scan(&u.id, &u.first_name, &u.last_name, &u.birthday)
+		if err != nil {
+			log.Println(err.Error())
+		}
+	}
+	// 循环读取结果集中的数据
+	log.Printf("id=%d,first_name=%s,last_name=%s,birthday=%s", u.id, u.first_name, u.last_name, u.birthday)
+
 }
 
 /*
