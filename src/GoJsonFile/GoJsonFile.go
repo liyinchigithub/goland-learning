@@ -4,12 +4,8 @@ package GoJsonFile
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
-	"os"
-	"path/filepath"
 	"regexp"
-	"strings"
 )
 
 /*
@@ -25,22 +21,6 @@ port	数据库端口号
 max_idle_conns	最大空闲连接数
 max_open_conns	最大打开连接数
 */
-
-//pwd 获取当前文件所在路径
-func pwd() string {
-	str, err := os.Getwd() //当前的路径
-	if err != nil {
-		panic(err)
-	}
-	fmt.Printf("%v\n", str)
-	str, err = filepath.Abs(str)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Printf("%v\n", str)
-	str = strings.Replace(str, "\\", "/", -1)
-	return str
-}
 
 //load 加载JSON文件解析为字典映射
 func load(filepath string) map[string]interface{} {
