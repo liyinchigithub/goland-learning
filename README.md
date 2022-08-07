@@ -380,6 +380,12 @@ func TestGoHttpClientA(t *testing.T) {
 sudo /usr/local/go/bin/go test -timeout 30s
 ```
 
+
+```shell
+cd /goland-learning/src/GoExcel/test
+go test -v -run=TestGoExcelB .
+```
+
 * 8.
 
 ```shell
