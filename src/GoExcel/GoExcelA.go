@@ -141,7 +141,7 @@ func TestAppendExcel(fileName string, activeSheet string, writerData map[string]
 		fmt.Println(err)
 		return
 	}
-	//  行级别？？？
+	//  行级别
 	lineLevel, err := f.GetRowOutlineLevel(activeSheet, 2)
 	fmt.Println("lineLevel:", lineLevel)
 	//  捕获异常
@@ -150,35 +150,29 @@ func TestAppendExcel(fileName string, activeSheet string, writerData map[string]
 		return
 	}
 	// 遍历写入数据(遍历map元素是字符串数组)
-	for _, arr_v := range writerData["names"] {
+	for i, arr_v := range writerData["names"] {
 		fmt.Println("writerData['names']", arr_v)
-		//  判断数据类型
+		// 判断数据类型
 		fmt.Println("writerData['names'] arr_v type:", reflect.TypeOf(arr_v))
-		f.SetCellValue(activeSheet, fmt.Sprintf("A%d", len(rows)+1), fmt.Sprintf("%v", arr_v))
-		f.SetCellValue(activeSheet, fmt.Sprintf("A%d", len(rows)+2), fmt.Sprintf("%v", arr_v))
-		f.SetCellValue(activeSheet, fmt.Sprintf("A%d", len(rows)+3), fmt.Sprintf("%v", arr_v))
+		// 单元格值设置
+		f.SetCellValue(activeSheet, fmt.Sprintf("A%d", len(rows)+1+i), fmt.Sprintf("%v", arr_v))
 	}
-	for _, arr_v := range writerData["address"] {
+	for i, arr_v := range writerData["address"] {
 		fmt.Println("writerData['address']", arr_v)
 		//  判断数据类型
 		fmt.Println("writerData['address'] arr_v type:", reflect.TypeOf(arr_v))
-		f.SetCellValue(activeSheet, fmt.Sprintf("B%d", len(rows)+1), fmt.Sprintf("%v", arr_v))
-		f.SetCellValue(activeSheet, fmt.Sprintf("B%d", len(rows)+2), fmt.Sprintf("%v", arr_v))
-		f.SetCellValue(activeSheet, fmt.Sprintf("B%d", len(rows)+3), fmt.Sprintf("%v", arr_v))
+		f.SetCellValue(activeSheet, fmt.Sprintf("B%d", len(rows)+1+i), fmt.Sprintf("%v", arr_v))
 	}
 	for i, arr_v := range writerData["numbers"] {
 		fmt.Println("writerData['numbers']", arr_v)
 		//  判断数据类型
 		fmt.Println("writerData['numbers'] arr_v type:", reflect.TypeOf(arr_v))
-		f.SetCellValue(activeSheet, fmt.Sprintf("C%d", len(rows)+1), fmt.Sprintf("%v", arr_v[i]))
-		f.SetCellValue(activeSheet, fmt.Sprintf("C%d", len(rows)+2), fmt.Sprintf("%v", arr_v[i]))
-		f.SetCellValue(activeSheet, fmt.Sprintf("C%d", len(rows)+3), fmt.Sprintf("%v", arr_v[i]))
-		fmt.Println("arr_v[i]:", arr_v[i])
+		// 单元格值设置
+		f.SetCellValue(activeSheet, fmt.Sprintf("C%d", len(rows)+1+i), fmt.Sprintf("%v", arr_v))
+		fmt.Println("arr_v[i]:", arr_v)
 	}
 	//  单元格值设置
 	// f.SetCellValue(activeSheet, fmt.Sprintf("A%d", len(rows)+1), fmt.Sprintf("aa%d", len(rows)+1))
-	// f.SetCellValue(activeSheet, fmt.Sprintf("B%d", len(rows)+1), fmt.Sprintf("bb%d", len(rows)+1))
-	// f.SetCellValue(activeSheet, fmt.Sprintf("C%d", len(rows)+1), fmt.Sprintf("cc%d", len(rows)+1))
 	//  保存文件，并捕获异常
 	if err := f.SaveAs(fileName); err != nil {
 		fmt.Println(err)
