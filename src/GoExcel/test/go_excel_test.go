@@ -12,7 +12,7 @@ func TestGoExcelA(t *testing.T) {
 }
 
 func TestGoExcelB(t *testing.T) {
-	// GoExcel.TestReadExcel()
+	GoExcel.TestReadExcel()
 }
 
 func TestGoExcelC(t *testing.T) {

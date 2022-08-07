@@ -18,8 +18,14 @@ import (
 	[excelize官方API]
 	https://xuri.me/excelize/zh-hans/
 	[博文]
+	https://blog.csdn.net/weixin_41546513/article/details/121219013
 	https://blog.csdn.net/weixin_43456598/article/details/100678077
 	https://studygolang.com/articles/20337
+
+
+	* 以文件路径而不是文件名
+	f.Path = "../excel_files/TMP_02.xlsx"
+
 */
 
 // 创建excel
@@ -280,3 +286,105 @@ func ArrayInGroupsOf(arr []int, num int64) [][]int {
 	}
 	return segments
 }
+
+/*
+	【常用方法】
+	// 获取当前活动sheet页的索引
+	sheet_idx := f.GetActiveSheetIndex()
+	sheetName := f.GetSheetName(sheet_idx)
+
+	// 设置单元格的值
+	// 在excel中SetCellValue设置的值都是常规模式
+	f.SetCellValue(sheetName, "A1", "字符串")
+	f.SetCellValue(sheetName, "A2", 200)
+	f.SetCellValue(sheetName, "A3", true)
+
+	f.SetCellStr(sheetName, "B1", "这是SetCellStr")
+	f.SetCellBool(sheetName, "B3", true)
+	f.SetCellFloat(sheetName, "B2", 100.00200, 3, 64) // 第三个参数是值，必须是float64类型的，第四个是小数点的位数，第五个是32或者64，原始的数据是float32就是32，是float64就是64
+	f.SetCellInt(sheetName, "B4", 100000)             // 整数
+	f.SetCellDefault(sheetName, "C1", "这是SetCellDefault")
+
+	// 设置单个单元格的公式
+	f.SetCellFormula(sheetName, "C2", "B2+A2")
+
+	// 链接只会做链接，不会给单元格赋值，需要单独设置值和样式
+	f.SetCellHyperLink(sheetName, "D1", "https://www.baidu.com", "External")
+	f.SetCellValue(sheetName, "D1", "链接1External")
+	f.SetCellHyperLink(sheetName, "D2", "Sheet1!A1", "Location")
+	f.SetCellValue(sheetName, "D2", "链接2Location")
+
+	// 插入行
+	f.InsertRow(sheetName, 2)
+	f.InsertCol(sheetName, "D")
+
+	// 复制行
+	f.DuplicateRow(sheetName, 3)
+	f.DuplicateRowTo(sheetName, 1, 7)
+
+	// 删除行/列
+	f.RemoveCol(sheetName, "F")
+	f.RemoveRow(sheetName, 7)
+
+	//查找
+	fmt.Println(f.SearchSheet(sheetName, "200", true))
+	fmt.Println(f.SearchSheet(sheetName, "^[0-9]{1,3}$", true))
+
+	// 修改sheet页的名称
+	f.SetSheetName(sheetName, "新的名称")
+
+	// go数据类型添加到excel中  其中的基础数据类型，string，int，float，bool 都可以直接通过设置指定单元格的值实现
+	// 下面演示数组，切片以及map格式的数据写入excel
+	var arr = []interface{}{
+		"姓名", "性别", "年龄", "工作",
+	}
+
+	idx := f.NewSheet("data")
+	// 数据必须是 []interface{} 类型的
+	err := f.SetSheetRow("data", "A1", &arr)
+	if err != nil {
+		fmt.Println(err)
+	}
+	f.SetActiveSheet(idx)
+
+	// 行列索引转换为单元格索引
+	fmt.Println(excelize.JoinCellName("A", 10))
+	// 单元格索引拆分行、列索引
+	fmt.Println(excelize.SplitCellName("AA10"))
+
+	// 设置多个单元格的公式，相当于在excel中通过拖拉复制公式
+	data := [][]float64{{10.5, 20.5}, {18, 28}, {100, 900}}
+	for i, d := range data {
+		startCell, _ := excelize.JoinCellName("A", i+2)
+		f.SetSheetRow("data", startCell, &d)
+	}
+	// 定义需要设置公式的所有单元格范围
+	f_type, ref := excelize.STCellFormulaTypeShared, "C2:C4"
+
+	// 相当于设置计算公式的模板
+	if err := f.SetCellFormula("data", "C2", "=SUM(A2:B2)", excelize.FormulaOpts{Type: &f_type, Ref: &ref}); err != nil {
+		fmt.Println(err)
+	}
+
+	// 合并单元格
+	if err := f.MergeCell("data", "D1", "G6"); err != nil {
+		fmt.Println(err)
+	}
+	mergedCells, err := f.GetMergeCells("data")
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	// 获取合并单元格的值以及合并单元格的起止位置
+	for _, cell := range mergedCells {
+		fmt.Println(cell.GetStartAxis())
+		fmt.Println(cell.GetEndAxis())
+		fmt.Println(cell.GetCellValue())
+	}
+
+	v, err := f.GetCellValue("data", "F3")
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println("合并单元格中的数据值是:", v)
+*/
